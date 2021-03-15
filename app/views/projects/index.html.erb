@@ -1,6 +1,8 @@
 <% @projects.each do |project| %>
   <div class="container">
     <p><%= project.name %></p>
+    <%= link_to project_path(project) do %>
+        <p class="text-center"><strong>Read more</strong></p>
+      <% end %>
   </div>
-
 <% end %>
