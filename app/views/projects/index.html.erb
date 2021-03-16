@@ -1,8 +1,21 @@
+<div class="container">
 <% @projects.each do |project| %>
-  <div class="container">
-    <p><%= project.name %></p>
-    <%= link_to project_path(project) do %>
-        <p class="text-center"><strong>Read more</strong></p>
-      <% end %>
-  </div>
+<div class="shadow bg-white mt-1">
+    <div class=" bg-size bg-cover bg-center"
+         style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path project.photo.key, width: 1000, crop: :fill %>')">
+        <div class="p-4 h-32 flex items-end text-white">
+            <h3 class="mb-2 text-4xl"><%= project.name %></h3>
+        </div>
+    </div>
+    <div class="p-4">
+          <p class="text-gray-600 text-base"><%= strip_tags(project.rich_body.to_s).truncate(400)  %></p>
+        <div class="mt-4 flex justify-between">
+          <%= link_to project_path(project) do %>
+              <p class="no-underline mr-4 text-blue-500 hover:text-blue-400"><strong>En savoir plus</strong></p>
+            <% end %>
+            <p class="mr-4 text-blue-500"> à terminer avant : <%= project.deadline.strftime("%d %m %Y") %></p>
+        </div>
+    </div>
+</div>
 <% end %>
+</div>
