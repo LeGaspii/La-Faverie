@@ -1,0 +1,16 @@
+  <div class="container">
+    <p><%= @project.house.name %></p>
+    <p><%= @project.name %></p>
+    <p><%= @project.rich_body %></p>
+    <p><%= @project.budget %>€</p>
+    <p><%= @project.deadline %></p>
+      <%= cl_image_tag @project.photo.key, height: 500, crop: :fill %>
+  </div>
+<div class="container m-2">
+  <%= link_to "Edit this project", edit_project_path(@project), class: "" %>
+  <%= link_to "Remove",
+              project_path(@project),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+
+</div>
