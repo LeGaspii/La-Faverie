@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:edit, :update, :show, :destory]
+  before_action :set_project, only: [:edit, :update, :show, :destroy]
   def index
     @projects = Project.all
   end
@@ -26,14 +26,17 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    if @project.save
-      redirect_to house_projects_path
+    @project.house = House.find(1)
+    if @project.save!
+      redirect_to project_path(@project)
     else
       render :new
     end
   end
 
   def destroy
+    @project.destroy
+    redirect_to projects_path
   end
 
   private

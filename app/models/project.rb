@@ -6,5 +6,4 @@ class Project < ApplicationRecord
   has_many :buyings
   has_many :usersprojects
   validates :name, presence: true
-  validates :content, presence: true
 end
