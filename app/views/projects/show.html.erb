@@ -32,9 +32,12 @@
           </div>
 
           <div class="tasks-display p-2 border border-gray-500 w-2/5">
-                  <% @tasks.each do |task| %>
+            <div>
+                  <% @buyings.each do |buying| %>
                   <li class="my-2">
-                  <span><%= task.name %></span>
+                    <span><%= buying.number %></span> x
+                    <span><%= buying.name %></span>(<span><%= buying.value %></span>)
+                    <span>= <%= buying.number * buying.value  %> €</span>
                   <%# <%= simple_form_for [ @project, task] do |f| %>
                     <!-- <div class="btn-box">
                       <%# <%= f.input :completed, input_html: { class: 'toggle'   %> %>
@@ -42,11 +45,16 @@
                   <%# <% end %>
                   <% end %>
                 </li>
-                <div class="text-center">
-                <%= link_to "Ajouter une tâche",
-                new_project_task_path(@project),
-                class: "uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg" %>
-          </div>
+                <hr class="m-2 p-1">
+                <div class="text-right m-2">
+                  <span class="m-2">Total : <%= @project.value_project  %> €</span>
+                </div>
+        </div>
+        <div class="text-center">
+          <%= link_to "Ajouter un achat",
+          new_project_buying_path(@project),
+          class: "uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg" %>
+        </div>
         </div>
       </div>
 
