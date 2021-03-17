@@ -11,13 +11,31 @@
     </div>
     <div class="p-4">
           <p class="text-gray-600"><%= @project.rich_body  %></p>
-          <div class="container flex">
-            <div class="tasks-display">
+          <div class="flex justify-around w-full">
+            <div class="tasks-display p-2 border border-gray-500 w-2/5 m-">
+              <div>
+              <div>
+
+                <% @tasks.each do |task| %>
+                <li class="my-2">
+
+                <span><%= task.name %></span>
+                <%# <%= simple_form_for [ @project, task] do |f| %>
+                  <!-- <div class="btn-box">
+                    <%# <%= f.input :completed, input_html: { class: 'toggle'   %> %>
+                  </div> -->
+                <%# <% end %>
+                <% end %>
+              </li>
+              <div class="text-center">
               <%= link_to "Ajouter une tâche",
-                           new_project_task_path(@project),
-                          class: "uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg" %>
+              new_project_task_path(@project),
+              class: "uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg" %>
+            </div>
+            </div>
+              </div>
           </div>
-          <div class="tasks-display">
+          <div class="tasks-display p-2 border border-gray-500 w-2/5">
             <button class="uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg">Ajouter un achat</button>
 
           </div>
