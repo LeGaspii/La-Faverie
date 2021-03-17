@@ -1,10 +1,10 @@
 class Project < ApplicationRecord
   belongs_to :house
-  has_one_attached :photo
+  has_one_attached :photo, dependent: :destroy
   has_rich_text :rich_body
-  has_many :tasks
-  has_many :buyings
-  has_many :usersprojects
+  has_many :tasks, dependent: :destroy
+  has_many :buyings, dependent: :destroy
+  has_many :usersprojects, dependent: :destroy
   validates :name, presence: true
   validates :photo, presence: true
 
@@ -16,5 +16,4 @@ class Project < ApplicationRecord
       end
     sum
   end
-
 end

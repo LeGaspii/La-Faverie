@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :usersfamillies
   has_many :blogs
-  has_many :usersprojects
-  has_many :reservations
+  has_many :usersprojects, dependent: :destroy
+  has_many :reservations, dependent: :destroy
   validates :photo, presence: true
 end
