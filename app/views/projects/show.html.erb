@@ -14,12 +14,12 @@
       <div class="d-flex justify-content-around">
         <div class="tasks-display p-2 border">
           <% @tasks.each do |task| %>
-            <li class="my-2">
+            <li class="my-2 d-flex justify-content-between">
             <span><%= task.name.capitalize %></span>
             <div>
-              <%= simple_form_for [ @project, task] do |f| %>
+              <%= form_for [ @project, task] do |f| %>
               <div class="btn-box">
-                <%= f.input :completed, input_html: { class: 'toggle'} %>
+                <%= f.check_box :completed, onclick: "(this).closest('form').submit();" %>
                 </div>
               <% end %>
             <% end %>
