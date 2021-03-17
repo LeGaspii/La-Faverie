@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :blogs
   has_many :usersprojects
   has_many :reservations
+  validates :photo, presence: true
 end

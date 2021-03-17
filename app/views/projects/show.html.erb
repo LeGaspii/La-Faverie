@@ -1,16 +1,24 @@
-  <div class="container">
-    <p><%= @project.house.name %></p>
-    <p><%= @project.name %></p>
-    <p><%= @project.rich_body %></p>
-    <p><%= @project.budget %>€</p>
-    <p><%= @project.deadline %></p>
-      <%= cl_image_tag @project.photo.key, height: 500, crop: :fill %>
-  </div>
-<div class="container m-2">
-  <%= link_to "Edit this project", edit_project_path(@project), class: "" %>
-  <%= link_to "Remove",
-              project_path(@project),
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
 
+<div class="shadow bg-white">
+    <div class=" bg-size bg-cover bg-center"
+         style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @project.photo.key, width: 1000, height: 500, crop: :fill %>')">
+        <div class="p-4 h-64 flex items-center text-white flex justify-between">
+            <h1 class="mb-2 text-5xl font-black"><%= @project.name %></h1>
+            <div class="flex items-end h-full">
+              <p class="mb-2 text-1xl"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
+            </div>
+        </div>
+    </div>
+    <div class="p-4">
+          <p class="text-gray-600"><%= @project.rich_body  %></p>
+        <div class="mt-4 flex justify-between">
+            <p class="mr-4 text-blue-500"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
+            <%= link_to "Modifier le projet", edit_project_path(@project), class: "mr-4 text-blue-500" %>
+            <%= link_to "Effacer",
+                        project_path(@project),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "mr-4 text-red-400" %>
+        </div>
+    </div>
 </div>
