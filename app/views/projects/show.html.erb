@@ -1,7 +1,7 @@
 
 <div class="shadow bg-white">
     <div class=" bg-size bg-cover bg-center"
-         style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @project.photo.key, width: 1000, height: 500, crop: :fill %>')">
+         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1000, height: 500, crop: :fill %>')">
         <div class="p-4 h-64 flex items-center text-white flex justify-between">
             <h1 class="mb-2 text-5xl font-black"><%= @project.name %></h1>
             <div class="flex items-end h-full">
@@ -11,8 +11,18 @@
     </div>
     <div class="p-4">
           <p class="text-gray-600"><%= @project.rich_body  %></p>
+          <div class="container flex">
+            <div class="tasks-display">
+              <%= link_to "Ajouter une tâche",
+                           new_project_task_path(@project),
+                          class: "uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg" %>
+          </div>
+          <div class="tasks-display">
+            <button class="uppercase px-8 py-2 rounded-full bg-blue-300 text-blue-600 max-w-max shadow-sm hover:shadow-lg">Ajouter un achat</button>
+
+          </div>
+        </div>
         <div class="mt-4 flex justify-between">
-            <p class="mr-4 text-blue-500"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
             <%= link_to "Modifier le projet", edit_project_path(@project), class: "mr-4 text-blue-500" %>
             <%= link_to "Effacer",
                         project_path(@project),
