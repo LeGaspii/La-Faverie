@@ -36,7 +36,7 @@
                   <% @buyings.each do |buying| %>
                   <li class="my-2">
                     <span><%= buying.number %></span> x
-                    <span><%= buying.name %></span>(<span><%= buying.value %></span>)
+                    <span><%= buying.name %></span>(<span><%= buying.value %>€</span>)
                     <span>= <%= buying.number * buying.value  %> €</span>
                   <%# <%= simple_form_for [ @project, task] do |f| %>
                     <!-- <div class="btn-box">
