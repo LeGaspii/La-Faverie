@@ -47,7 +47,7 @@
                 </li>
                 <hr class="m-2 p-1">
                 <div class="text-right m-2">
-                  <span class="m-2">Total : <%= @project.value_project  %> €</span>
+                  <span class="m-2 h4">Total : <%= @project.value_project  %> €</span>
                 </div>
         </div>
         <div class="text-center d-flex align-items-end justify-content-center">
@@ -59,13 +59,13 @@
       </div>
 
 
-        <div class="mt-4 flex justify-between">
+        <div class="mt-4 d-flex justify-content-between">
             <%= link_to "Modifier le projet", edit_project_path(@project), class: "mr-4 text-blue-500" %>
             <%= link_to "Effacer",
                         project_path(@project),
                         method: :delete,
                         data: { confirm: "Are you sure?" },
-                        class: "mr-4 text-red-400" %>
+                        class: "mr-4 text-danger" %>
         </div>
     </div>
 </div>
