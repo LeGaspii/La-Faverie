@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :perks, only: [:new, :create, :edit, :destroy, :update, :index ]
   end
-  resources :projects
+  resources :projects do
+    resources :tasks, only: [:new, :create, :edit, :destroy, :update, :index ]
+    resources :buyings, only: [:new, :create, :edit, :destroy, :update, :index ]
+
+  end
 end
