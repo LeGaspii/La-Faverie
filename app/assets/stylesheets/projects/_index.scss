@@ -1,2 +1,11 @@
 // Import page-specific CSS files here.
 @import "show";
+
+.bg-img {
+  height: 15vh;
+}
+.card-project {
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}

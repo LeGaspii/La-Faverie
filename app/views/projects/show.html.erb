@@ -1,7 +1,7 @@
 
-<div class="">
+<div class="project">
     <div class="background-img"
-         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1000, height: 500, crop: :fill %>')">
+         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1200, height: 500, crop: :fill %>')">
         <div class="p-2 d-flex justify-content-between text-white h-100">
             <h1 class="mb-2 w-50"><%= @project.name %></h1>
             <div class="d-flex align-items-end">
@@ -27,7 +27,7 @@
                 <div class="d-flex align-items-end justify-content-center">
                 <%= link_to "Ajouter une tâche",
                 new_project_task_path(@project),
-                class: "btn btn-primary" %>
+                class: "btn btn-gradient" %>
               </div>
           </div>
 
@@ -53,7 +53,7 @@
         <div class="text-center d-flex align-items-end justify-content-center">
           <%= link_to "Ajouter un achat",
           new_project_buying_path(@project),
-          class: "btn btn-primary" %>
+          class: "btn btn-gradient" %>
         </div>
         </div>
       </div>
