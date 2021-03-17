@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
     @buyings = Buying.where(project_id: @project)
     @task = Task.new
     @buying = Buying.new
+    @usersproject = Usersproject.new
+    @usersprojects = Usersproject.where(project_id: @project)
   end
 
   def new
