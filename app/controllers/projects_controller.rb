@@ -7,6 +7,8 @@ class ProjectsController < ApplicationController
   def show
     @tasks = Task.where(project_id: @project)
     @buyings = Buying.where(project_id: @project)
+    @task = Task.new
+    @buying = Buying.new
   end
 
   def new

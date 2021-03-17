@@ -10,62 +10,132 @@
         </div>
     </div>
     <div class="p-4">
-      <div>
-          <p class="text-gray"><%= @project.rich_body  %></p>
-          <div class="d-flex justify-content-around">
-            <div class="tasks-display p-2 border">
-                  <% @tasks.each do |task| %>
-                  <li class="my-2">
-                  <span><%= task.name %></span>
-                  <%# <%= simple_form_for [ @project, task] do |f| %>
-                    <!-- <div class="btn-box">
-                      <%# <%= f.input :completed, input_html: { class: 'toggle'   %> %>
-                    </div> -->
-                  <%# <% end %>
-                  <% end %>
-                </li>
-                <div class="d-flex align-items-end justify-content-center">
-                <%= link_to "Ajouter une tâche",
-                new_project_task_path(@project),
-                class: "btn btn-gradient" %>
-              </div>
+      <p class="text-gray"><%= @project.rich_body  %></p>
+      <div class="d-flex justify-content-around">
+        <div class="tasks-display p-2 border">
+          <% @tasks.each do |task| %>
+            <li class="my-2">
+            <span><%= task.name.capitalize %></span>
+            <div>
+              <%= simple_form_for [ @project, task] do |f| %>
+              <div class="btn-box">
+                <%= f.input :completed, input_html: { class: 'toggle'} %>
+                </div>
+              <% end %>
+            <% end %>
+            </div>
+            </li>
+            <div class=" text-center d-flex align-items-end justify-content-center">
+              <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addTask">
+                Ajouter une tâche
+              </button>
+            </div>
           </div>
 
-          <div class="tasks-display p-2 border">
-            <div>
-                  <% @buyings.each do |buying| %>
-                  <li class="my-2">
-                    <span><%= buying.number %></span> x
-                    <span><%= buying.name %></span>(<span><%= buying.value %>€</span>)
-                    <span>= <%= buying.number * buying.value  %> €</span>
-                  <%# <%= simple_form_for [ @project, task] do |f| %>
-                    <!-- <div class="btn-box">
-                      <%# <%= f.input :completed, input_html: { class: 'toggle'   %> %>
-                    </div> -->
-                  <%# <% end %>
-                  <% end %>
-                </li>
-                <hr class="m-2 p-1">
-                <div class="text-right m-2">
-                  <span class="m-2 h4">Total : <%= @project.value_project  %> €</span>
-                </div>
-        </div>
-        <div class="text-center d-flex align-items-end justify-content-center">
-          <%= link_to "Ajouter un achat",
-          new_project_buying_path(@project),
-          class: "btn btn-gradient" %>
+    <div class="tasks-display p-2 border">
+      <div>
+        <% @buyings.each do |buying| %>
+        <li class="my-2">
+          <span><%= buying.number %></span> x
+          <span><%= buying.name.capitalize %></span>(<span><%= buying.value %>€</span>)
+          <span>= <%= buying.number * buying.value  %> €</span>
+          <% end %>
+        </li>
+        <hr class="m-2 p-1">
+        <div class="text-right m-2">
+          <span class="m-2 h4">Total : <%= @project.value_project  %> €</span>
         </div>
         </div>
+        <div class=" text-center d-flex align-items-end justify-content-center">
+          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addBuying">
+            Ajouter un achat
+          </button>
       </div>
+    </div>
+    </div>
 
 
         <div class="mt-4 d-flex justify-content-between">
-            <%= link_to "Modifier le projet", edit_project_path(@project), class: "mr-4 text-blue-500" %>
+          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
+            Modifier le projet
+          </button>
             <%= link_to "Effacer",
                         project_path(@project),
                         method: :delete,
                         data: { confirm: "Are you sure?" },
                         class: "mr-4 text-danger" %>
         </div>
+</div>
+
+<!-- modal projet-->
+<div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Vous pouvez modifier les données</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <%= render "form", projects: @project %>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- modal achat-->
+<div class="modal fade" id="addBuying" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Vous pouvez modifier les données</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <%= simple_form_for [ @project, @buying ] do |f| %>
+          <div class="form-inputs">
+            <%= f.input :name %>
+            <%= f.input :number %>
+            <%= f.input :value %>
+          </div>
+          <div class="mt-2 form-actions btn btn-gradient container text-center">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal achats-->
+<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Merci d'inscrire le nom de la tâche</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <%= simple_form_for [ @project, @task ] do |f| %>
+          <div class="form-inputs">
+            <%= f.input :name %>
+          </div>
+          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
