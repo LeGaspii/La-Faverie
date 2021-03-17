@@ -12,7 +12,9 @@
     <div class="p-4 ">
       <p class="text-gray"><%= @project.rich_body  %></p>
       <div class="d-flex justify-content-around row">
-        <div class="tasks-display p-2 border col-md-4 col-12 col-sm-6">
+        <div class="tasks-display tasks p-2 border col-md-4 col-12 col-sm-6">
+          <div class="card-tasks">
+            <u><span>Liste des tâches :</span></u>
           <% @tasks.each do |task| %>
             <li class="my-2 d-flex justify-content-between">
             <span><%= task.name.capitalize %></span>
@@ -25,6 +27,7 @@
             <% end %>
             </div>
             </li>
+          </div>
             <div class=" text-center d-flex align-items-end justify-content-center">
               <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addTask">
                 Ajouter une tâche
@@ -33,7 +36,8 @@
           </div>
 
     <div class="tasks-display p-2 border col-md-3 col-12 col-sm-6">
-      <div>
+      <div class="card-buys">
+        <u><span>Liste des achats :</span></u>
         <% @buyings.each do |buying| %>
         <li class="my-2">
           <span><%= buying.number %></span> x
@@ -46,22 +50,25 @@
           <span class="m-2 h4">Total : <%= @project.value_project  %> €</span>
         </div>
         </div>
-        <div class=" text-center d-flex align-items-end justify-content-center">
+        <div class="text-center d-flex align-items-end justify-content-center">
           <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addBuying">
             Ajouter un achat
           </button>
       </div>
     </div>
 
-    <div class="tasks-display p-2 border col-md-4 col-12 col-sm-6">
-      <h6 class="text-center"> Qui sera la ? </h6>
-      <div>
-
+    <div class="tasks-display  p-2 border col-md-4 col-12 col-sm-6">
+      <u><span class="text-center"> Qui sera la ? </span></u>
+      <div class="card-whos">
       <% @usersprojects.each do |userproject| %>
         <span><strong><%= userproject.user.first_name.capitalize %></strong> <strong><%= userproject.user.last_name.capitalize %></strong> du <%= userproject.date_start.strftime("%d %m %Y") %> au <%= userproject.date_end.strftime("%d %m %Y") %></span>
         <% end %>
       </div>
-
+      <div class="btn-bottom text-center d-flex align-items-end justify-content-center">
+      <button type="button" class="btn btn-gradient bottom" data-toggle="modal" data-target="#joinProject">
+        Rejoindre le projet
+      </button>
+    </div>
       </div>
 
     </div>
@@ -71,9 +78,7 @@
           <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
             Modifier le projet
           </button>
-          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#joinProject">
-            Rejoindre le projet
-          </button>
+
             <%= link_to "Effacer",
                         project_path(@project),
                         method: :delete,

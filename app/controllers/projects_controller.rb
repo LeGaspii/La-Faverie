@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.house = House.find(1)
-    if @project.save!
+    if @project.save
       redirect_to project_path(@project)
     else
       render :new

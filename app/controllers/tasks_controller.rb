@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.new(task_params)
     @task.project_id = @project.id
-    if @task.save!
+    if @task.save
       redirect_to project_path(@project)
     else
       render :new
