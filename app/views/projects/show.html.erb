@@ -9,10 +9,10 @@
             </div>
         </div>
     </div>
-    <div class="p-4">
+    <div class="p-4 ">
       <p class="text-gray"><%= @project.rich_body  %></p>
-      <div class="d-flex justify-content-around">
-        <div class="tasks-display p-2 border">
+      <div class="d-flex justify-content-around row">
+        <div class="tasks-display p-2 border col-md-4 col-12 col-sm-6">
           <% @tasks.each do |task| %>
             <li class="my-2 d-flex justify-content-between">
             <span><%= task.name.capitalize %></span>
@@ -32,7 +32,7 @@
             </div>
           </div>
 
-    <div class="tasks-display p-2 border">
+    <div class="tasks-display p-2 border col-md-3 col-12 col-sm-6">
       <div>
         <% @buyings.each do |buying| %>
         <li class="my-2">
@@ -52,6 +52,10 @@
           </button>
       </div>
     </div>
+
+    <div class="tasks-display p-2 border col-md-4 col-12 col-sm-6">
+      </div>
+
     </div>
 
 
