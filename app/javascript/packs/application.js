@@ -25,14 +25,21 @@ require("flatpickr")
 
 // External imports
 import "bootstrap";
-import flatpickr from "flatpickr";
-
+import flatpickr from "flatpickr"
+require("flatpickr/dist/flatpickr.css")
+import { French } from "flatpickr/dist/l10n/fr.js"
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  flatpickr("[data-behavior='flatpickr']", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "d-m-Y",
+    "locale": French,
+  })
 });
 
 require("trix")
