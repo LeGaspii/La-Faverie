@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("flatpickr")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -24,14 +25,21 @@ require("channels")
 
 // External imports
 import "bootstrap";
-
-
+import flatpickr from "flatpickr"
+require("flatpickr/dist/flatpickr.css")
+import { French } from "flatpickr/dist/l10n/fr.js"
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  flatpickr("[data-behavior='flatpickr']", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "d-m-Y",
+    "locale": French,
+  })
 });
 
 require("trix")
