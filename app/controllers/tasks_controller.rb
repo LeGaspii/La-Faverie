@@ -1,6 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
+  def show
+  end
+
   def new
   @project = Project.find(params[:project_id])
   @task = Task.new
@@ -11,8 +14,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
+    @project = Project.find(@task.project_id)
     if @task.update(task_params)
       redirect_to project_path(@project)
     else
@@ -24,7 +27,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.new(task_params)
     @task.project_id = @project.id
-    if @task.save!
+    if @task.save
       redirect_to project_path(@project)
     else
       render :new
@@ -41,6 +44,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:name)
+    params.require(:task).permit(:name, :completed)
   end
 end

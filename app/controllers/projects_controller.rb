@@ -7,6 +7,10 @@ class ProjectsController < ApplicationController
   def show
     @tasks = Task.where(project_id: @project)
     @buyings = Buying.where(project_id: @project)
+    @task = Task.new
+    @buying = Buying.new
+    @usersproject = Usersproject.new
+    @usersprojects = Usersproject.where(project_id: @project)
   end
 
   def new
@@ -29,7 +33,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.house = House.find(1)
-    if @project.save!
+    if @project.save
+      task = Task.new(project_id: @project.id, name: "example")
+      task.save!
       redirect_to project_path(@project)
     else
       render :new
