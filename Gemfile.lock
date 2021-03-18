@@ -97,7 +97,6 @@ GEM
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.15.0)
-    flatpickr (4.6.6.0)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -270,7 +269,6 @@ DEPENDENCIES
   cloudinary (~> 1.16.0)
   devise
   dotenv-rails
-  flatpickr
   font-awesome-sass
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
