@@ -34,6 +34,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.house = House.find(1)
     if @project.save
+      task = Task.new(project_id: @project.id, name: "example")
+      task.save!
       redirect_to project_path(@project)
     else
       render :new

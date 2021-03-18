@@ -11,38 +11,42 @@
     </div>
     <div class="p-4 ">
       <p class="text-gray"><%= @project.rich_body  %></p>
-      <div class="d-flex justify-content-around row">
+      <div class="d-flex justify-content-between row">
+
         <div class="tasks-display tasks p-2 border col-md-4 col-12 col-sm-6">
           <div class="card-tasks">
-            <u><span>Liste des tâches :</span></u>
+            <u><p>Liste des tâches :</p></u>
           <% @tasks.each do |task| %>
             <li class="my-2 d-flex justify-content-between">
-            <span><%= task.name.capitalize %></span>
+            <p><%= task.name.capitalize %></p>
             <div>
               <%= form_for [ @project, task] do |f| %>
               <div class="btn-box">
                 <%= f.check_box :completed, onclick: "(this).closest('form').submit();" %>
-                </div>
+              </div>
               <% end %>
             <% end %>
             </div>
             </li>
-          </div>
-            <div class=" text-center d-flex align-items-end justify-content-center">
+            <div class="text-center d-flex align-items-end justify-content-center">
               <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addTask">
                 Ajouter une tâche
               </button>
+              <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editTasks">
+                Modifier les tâches
+              </button>
             </div>
           </div>
+          </div>
 
-    <div class="tasks-display p-2 border col-md-3 col-12 col-sm-6">
+    <div class="tasks-display tasks p-2 border col-md-3 col-12 col-sm-6">
       <div class="card-buys">
         <u><span>Liste des achats :</span></u>
         <% @buyings.each do |buying| %>
-        <li class="my-2">
-          <span><%= buying.number %></span> x
-          <span><%= buying.name.capitalize %></span>(<span><%= buying.value %>€</span>)
-          <span>= <%= buying.number * buying.value  %> €</span>
+        <li class="my-2 d-flex">
+          <span><%= buying.number %>&nbspx&nbsp</span>
+          <span> <%= buying.name.capitalize %> </span>(<span> <%= buying.value %>€ </span>)
+          <span>&nbsp=&nbsp<%= buying.number * buying.value  %> €</span>
           <% end %>
         </li>
         <hr class="m-2 p-1">
@@ -57,7 +61,7 @@
       </div>
     </div>
 
-    <div class="tasks-display  p-2 border col-md-4 col-12 col-sm-6">
+    <div class="tasks-display tasks p-2 border col-md-4 col-12 col-sm-6">
       <u><span class="text-center"> Qui sera la ? </span></u>
       <div class="card-whos">
       <% @usersprojects.each do |userproject| %>
@@ -182,6 +186,29 @@
           </div>
           <% end %>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal modifier les taches-->
+<div class="modal fade" id="editTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Quand es-tu dispo ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-between">
+        <% @tasks.each do |task| %>
+        <div class="">
+           <span><%= task.name %></span>
+           <span> <%= link_to "modifier", edit_project_task_path(@project, task) %></span>
+          <% end %>
+        </div>
+      </div>
       </div>
     </div>
   </div>

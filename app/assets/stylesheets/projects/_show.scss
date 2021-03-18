@@ -1,6 +1,8 @@
 // Specific CSS for your home-page
 .tasks-display {
-  min-width: 30vw;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .tasks {
   min-height: 200px;
@@ -18,4 +20,7 @@
 }
 .card-tasks {
   height: calc(100% - 52px);
+}
+.tasks-display p {
+  margin-bottom: 0;
 }
