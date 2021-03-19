@@ -1,0 +1,8 @@
+<%= simple_form_for [ @project, @comment ] do |f| %>
+<div class="form-inputs">
+  <%= f.rich_text_area :rich_body %>
+</div>
+<div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
+  <%= f.button :submit %>
+</div>
+<% end %>

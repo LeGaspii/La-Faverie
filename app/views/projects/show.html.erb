@@ -1,15 +1,27 @@
 
-<div class="project">
+<div class="project container mt-1">
     <div class="background-img"
          style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1200, height: 500, crop: :fill %>')">
         <div class="p-2 d-flex justify-content-between text-white h-100">
             <h1 class="mb-2 w-50"><%= @project.name %></h1>
             <div class="d-flex align-items-end">
-              <p class="mb-2 text-1xl"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
+              <p class="mb-2"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
             </div>
         </div>
     </div>
-    <div class="p-4 ">
+    <div class="mt-4 d-flex justify-content-between">
+      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
+        Modifier le projet
+      </button>
+
+      <%= link_to "Effacer",
+      project_path(@project),
+      method: :delete,
+      data: { confirm: "Are you sure?" },
+      class: "mr-4 text-danger" %>
+    </div>
+
+    <div class="p-2 mt-2 bg-white">
       <p class="text-gray"><%= @project.rich_body  %></p>
       <div class="d-flex justify-content-between row">
 
@@ -67,7 +79,7 @@
 
       <% @usersprojects.each do |userproject| %>
       <li>
-        <span><%= cl_image_tag userproject.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %><strong><%= userproject.user.first_name.capitalize %></strong> <strong><%= userproject.user.last_name.capitalize %></strong> du <%= userproject.date_start.strftime("%d %m %Y") %> au <%= userproject.date_end.strftime("%d %m %Y") %></span>
+        <span><%= cl_image_tag userproject.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %><strong><%= userproject.user.first_name.capitalize %></strong> <strong><%= userproject.user.last_name.split("").first.capitalize %>.</strong> du <%= userproject.date_start.strftime("%d %m %Y") %> au <%= userproject.date_end.strftime("%d %m %Y") %></span>
       </li>
         <% end %>
       </div>
@@ -77,21 +89,26 @@
       </button>
     </div>
       </div>
-
     </div>
-
-
-        <div class="mt-4 d-flex justify-content-between">
-          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
-            Modifier le projet
-          </button>
-
-            <%= link_to "Effacer",
-                        project_path(@project),
-                        method: :delete,
-                        data: { confirm: "Are you sure?" },
-                        class: "mr-4 text-danger" %>
+    <div class="comments mt-2">
+        <% @comments.each do |comment| %>
+        <div class="comment-msg">
+        <div class="d-flex">
+          <div>
+            <%= cl_image_tag comment.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %>
+          </div >
+          <span class="p-1">De <%= comment.user.first_name %> le :<%= comment.created_at.strftime("%d %m %Y") %></span>
         </div>
+        <div class="p-1">
+          <%= comment.rich_body %>
+        </div>
+      </div>
+      <% end %>
+          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#Question">
+            Poser une question ?
+          </button>
+    </div>
+  </div>
 </div>
 
 <!-- modal projet-->
@@ -196,6 +213,32 @@
   </div>
 </div>
 
+<!-- modal Questions-->
+<div class="modal fade" id="Question" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class=" modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Quelle tâche veux-tu modifier ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-between">
+        <div class="container">
+          <%= simple_form_for [ @project, @comment ] do |f| %>
+          <div class="form-inputs">
+            <%= f.rich_text_area :rich_body %>
+          </div>
+          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- modal modifier les taches-->
 <div class="modal fade" id="editTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -217,4 +260,3 @@
       </div>
     </div>
   </div>
-</div>

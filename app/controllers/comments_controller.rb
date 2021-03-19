@@ -1,12 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :show, :destroy]
-  def index
-    @comments = Comment.all
-  end
-
-  def show
-
-  end
 
   def new
   @comment = Comment.new
@@ -27,10 +20,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.house = House.find(1)
+    project = Project.find(params[:project_id])
+    @comment.project = project
     @comment.user = current_user
     if @comment.save
-      redirect_to comment_path(@comment)
+      redirect_to project_path(project)
     else
       render :new
     end
