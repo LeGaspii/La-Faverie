@@ -1,25 +1,21 @@
 <div class="container">
-<% @blogs.each do |blog| %>
-            <%= link_to blog_path(blog) do %>
-<div class="mt-1 card-blog">
-      <div class="bg-img-blog"
-         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path blog.photos.first.key, width: 400, crop: :fit %>')">
-        <div class="p-4 text-white title-blog">
-            <h3 class="mb-2 font-weight-bold"><%= blog.title.upcase.truncate(35) %></h3>
-            <div class:"auteur-blog">
-              <span class="mr-4"> posté par : <%= blog.user.first_name %></span><%= cl_image_tag blog.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar" %>
-            </div>
-        </div>
-        <div class="p-2 blog-text-index">
-          <p><%= strip_tags(blog.rich_body.to_s).truncate(600)  %></p>
-          <div class="mt-4 d-flex align-items-end justify-content-between img-avatar-blog">
-            <%= link_to blog_path(blog) do %>
-            <p class="text-blue"><strong>En savoir plus</strong></p>
-            <% end %>
-          </div>
-        </div>
+  <% @blogs.each do |blog| %>
+  <div class="card-blog" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path blog.photos.first.key, width: 1200, crop: :fill %>')"">
+    <%= link_to blog_path(blog) do %>
+    <div class="title-blog">
+      <h4><%= blog.title.upcase.truncate(35)%></h4>
+      <div class="auteur-blog">
+        <span class="m-1"> <%= blog.user.first_name.capitalize %> <%= blog.user.last_name.split("").first.capitalize %>.</span><%= cl_image_tag blog.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar" %>
+      </div>
+
     </div>
-</div>
-<% end %>
-<% end %>
+    <% end %>
+    <div class="blog-text-index">
+      <span> <%= strip_tags(blog.rich_body.to_s).truncate(600)  %></span>
+      <%= link_to blog_path(blog) do %>
+      <p class="text-blue"><strong>En savoir plus</strong></p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
