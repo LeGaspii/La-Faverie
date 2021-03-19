@@ -1,0 +1,23 @@
+<% @blog.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+
+<ol class="carousel-indicators">
+   <% @blog.photos.each_with_index do |photo, n| %>
+     <li data-target='#MyCarousel' data-slide-to="#{n}" class="#{'active' if n == 0}"></li>
+   <% end %>
+</ol>
+
+<div class="carousel-inner" role="listbox">
+  <div class="item active">
+    <%= cl_image_tag @blog.photos.first.key %>
+  </div>
+  <% @blog.photos.drop(1).each do |photo| %>
+     <div class="item">
+       <%= cl_image_tag photo.key %>
+     </div>
+  <% end %>
+</div>
+
+<%= @blog.rich_body  %>
