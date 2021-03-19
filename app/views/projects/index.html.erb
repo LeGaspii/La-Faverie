@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="p-4">
-          <p class="text-gray-600 text-base"><%= strip_tags(project.rich_body.to_s).truncate(400)  %></p>
+          <p class=""><%= strip_tags(project.rich_body.to_s).truncate(400)  %></p>
         <div class="mt-4 d-flex align-items-end justify-content-between">
           <%= link_to project_path(project) do %>
               <p class="no-underline mr-4 text-blue-500 hover:text-blue-400"><strong>En savoir plus</strong></p>
