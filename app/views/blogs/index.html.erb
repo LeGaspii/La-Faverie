@@ -1,0 +1,21 @@
+<div class="container">
+  <% @blogs.each do |blog| %>
+  <div class="card-blog" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path blog.photos.first.key, width: 1200, crop: :fill %>')"">
+    <%= link_to blog_path(blog) do %>
+    <div class="title-blog">
+      <h4><%= blog.title.upcase.truncate(35)%></h4>
+      <div class="auteur-blog">
+        <span class="m-1"> <%= blog.user.first_name.capitalize %> <%= blog.user.last_name.split("").first.capitalize %>.</span><%= cl_image_tag blog.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar" %>
+      </div>
+
+    </div>
+    <% end %>
+    <div class="blog-text-index">
+      <span> <%= strip_tags(blog.rich_body.to_s).truncate(600)  %></span>
+      <%= link_to blog_path(blog) do %>
+      <p class="text-blue"><strong>En savoir plus</strong></p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>

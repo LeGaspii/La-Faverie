@@ -1,0 +1,35 @@
+// Import page-specific CSS files here.
+@import "show";
+
+
+.title-blog {
+  color: white;
+  justify-content: space-between;
+  min-width: 15vw;
+  max-width: 20vh;
+  // width: 20vh;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.bg-img-blog {
+}
+.blog-text-index {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  width: 85vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 5px;
+
+}
+
+
+.card-blog {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
