@@ -1,23 +1,55 @@
-<% @blog.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-
-
-<ol class="carousel-indicators">
-   <% @blog.photos.each_with_index do |photo, n| %>
-     <li data-target='#MyCarousel' data-slide-to="#{n}" class="#{'active' if n == 0}"></li>
-   <% end %>
-</ol>
-
-<div class="carousel-inner" role="listbox">
-  <div class="item active">
-    <%= cl_image_tag @blog.photos.first.key %>
+<div class="container pt-1">
+  <div class="blog-title text-center">
+    <h1><%= @blog.title.capitalize %></h1>
   </div>
-  <% @blog.photos.drop(1).each do |photo| %>
-     <div class="item">
-       <%= cl_image_tag photo.key %>
-     </div>
-  <% end %>
-</div>
+  <div id="blog-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <% @blog.photos.each_with_index do |photo, n| %>
+        <li data-target='#blog-carousel' data-slide-to="<%= n+1 %>" class="<%='active' if n == 0%>"></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% @blog.photos.each_with_index do |photo, n| %>
+      <div class="carousel-item <%= "active" if n == 0 %>">
+        <img class="d-block w-100" src="<%= cl_image_path photo.key, width: 800, height: 600, crop: :fill   %>" alt="<%= n+1 %> slide">
+      </div>
+      <% end %>
 
-<%= @blog.rich_body  %>
+    </div>
+    <a class="carousel-control-prev" href="#blog-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#blog-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="blog-text">
+    <%= @blog.rich_body  %>
+  </div>
+  <button type="button" class="btn btn-gradient w-100" data-toggle="modal" data-target="#editBlog">
+    Modifier l'article
+  </button>
+<div>
+
+
+  <!-- modal blog-->
+  <div class="modal fade" id="editBlog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Tu peux modifier l'article !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <%= render "form", projects: @blog %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
