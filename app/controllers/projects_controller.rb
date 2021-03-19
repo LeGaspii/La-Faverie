@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
     @buying = Buying.new
     @usersproject = Usersproject.new
     @usersprojects = Usersproject.where(project_id: @project)
+    @comment = Comment.new
+    @comments = Comment.where(project_id: @project).last(50)
   end
 
   def new

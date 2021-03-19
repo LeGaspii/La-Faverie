@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :tasks, only: [:new, :create, :edit, :destroy, :update]
     resources :buyings, only: [:new, :create, :edit, :destroy, :update ]
     resources :usersprojects, only: [:new, :create, :edit, :destroy, :update ]
+    resources :comments, only: [:new, :create, :edit, :destroy, :update ]
   end
 end

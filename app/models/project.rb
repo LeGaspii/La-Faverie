@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :buyings, dependent: :destroy
   has_many :usersprojects, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, presence: true
   validates :photo, presence: true
 
