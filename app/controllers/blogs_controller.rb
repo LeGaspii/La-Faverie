@@ -29,7 +29,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.house = House.find(1)
     @blog.user = current_user
-    if @blog.save!
+    if @blog.save
       redirect_to blog_path(@blog)
     else
       render :new

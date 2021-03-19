@@ -2,6 +2,7 @@
   <div class="blog-title text-center">
     <h1><%= @blog.title.capitalize %></h1>
   </div>
+  <span>posté le :<%= @blog.created_at.strftime("%d %m %Y") %> par <%= @blog.user.first_name%><%= cl_image_tag @blog.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %></span>
   <div id="blog-carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <% @blog.photos.each_with_index do |photo, n| %>
@@ -31,6 +32,11 @@
   <button type="button" class="btn btn-gradient w-100" data-toggle="modal" data-target="#editBlog">
     Modifier l'article
   </button>
+  <%= link_to "Effacer",
+              blog_path(@blog),
+              method: :delete,
+              data: { confirm: "Are you sure?" },
+              class: "mr-4 text-danger" %>
 <div>
 
 
