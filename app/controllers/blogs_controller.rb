@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :show, :destroy]
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.includes([:rich_text_rich_body]).includes([:user])
   end
 
   def show
