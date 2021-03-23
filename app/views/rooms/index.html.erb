@@ -1,8 +1,9 @@
 <div class="container">
   <% @rooms.each do |room| %>
-  <div class="shadow bg-white mt-1">
+  <div class="shadow bg-black mt-1">
     <div class=" bg-size bg-cover bg-center">
-        <div class="p-4 h-32 flex items-end text-white">
+        <div class="p-4 h-32 flex items-end text-black">
+      <h3 class="mb-2 text-4xl"><%= room.house.name %></h3>
       <h3 class="mb-2 text-4xl"><%= room.name %></h3>
     </div>
   </div>
