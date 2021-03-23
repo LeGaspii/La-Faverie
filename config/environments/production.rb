@@ -23,6 +23,9 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  config.action_mailer.delivery_method     = :postmark
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
+  config.action_mailer.default_url_options = { host: "la-faverie.herokuapp.com" }
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
