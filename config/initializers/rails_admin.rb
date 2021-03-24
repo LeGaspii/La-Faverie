@@ -13,6 +13,7 @@ RailsAdmin.config do |config|
       flash[:alert] = 'Sorry, no admin access for you.'
       redirect_to main_app.root_path
     end
+  end
   ## == CancanCan ==
   # config.authorize_with :cancancan
 
