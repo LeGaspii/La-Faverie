@@ -57,13 +57,13 @@
         <% @buyings.each do |buying| %>
         <li class="my-2 d-flex">
           <span><%= buying.number %>&nbspx&nbsp</span>
-          <span> <%= buying.name.capitalize %> </span>(<span> <%= buying.value %>€ </span>)
-          <span>&nbsp=&nbsp<%= buying.number * buying.value  %> €</span>
+          <span> <%= buying.name.capitalize %> </span>(<span> <%= buying.value.round(2) %>€ </span>)
+          <span>&nbsp=&nbsp<%= (buying.number * buying.value).round(2)  %> €</span>
           <% end %>
         </li>
         <hr class="m-2 p-1">
         <div class="text-right m-2">
-          <span class="m-2 h4">Total : <%= @project.value_project  %> €</span>
+          <span class="m-2 h4">Total : <%= @project.value_project.round(2)  %> €</span>
         </div>
         </div>
         <div class="text-center d-flex align-items-end justify-content-center">

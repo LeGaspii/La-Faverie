@@ -3,13 +3,16 @@ class CommentsController < ApplicationController
 
   def new
   @comment = Comment.new
+  authorize @comment
   end
 
   def edit
+    authorize @comment
     @comment = Comment.find(params[:id])
   end
 
   def update
+    authorize @comment
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       redirect_to comment_path(@comment)
@@ -23,6 +26,7 @@ class CommentsController < ApplicationController
     project = Project.find(params[:project_id])
     @comment.project = project
     @comment.user = current_user
+    authorize @comment
     if @comment.save
       redirect_to project_path(project)
     else
@@ -31,6 +35,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize @comment
     @comment.destroy
     redirect_to comments_path
   end

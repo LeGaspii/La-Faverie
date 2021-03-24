@@ -37,6 +37,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'cloudinary', '~> 1.16.0'
 gem 'postmark-rails'
+gem 'pundit'
 
 gem 'bullet', group: 'development'
 group :development, :test do  gem 'pry-byebug'

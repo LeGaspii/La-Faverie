@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:edit, :update, :show, :destroy]
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project.all)
   end
 
   def show
@@ -10,20 +10,24 @@ class ProjectsController < ApplicationController
     @task = Task.new
     @buying = Buying.new
     @usersproject = Usersproject.new
-    @usersprojects = Usersproject.where(project_id: @project)
+    @usersprojects = Usersproject.where(project_id: @project).includes([:user]).includes([:user])
     @comment = Comment.new
-    @comments = Comment.where(project_id: @project).last(50)
+    @comments = Comment.where(project_id: @project).includes([:rich_text_rich_body]).includes([:user]).last(50)
+    authorize @project
   end
 
   def new
-  @project = Project.new
+    @project = Project.new
+    authorize @project
   end
 
   def edit
     @project = Project.find(params[:id])
+    authorize @project
   end
 
   def update
+    authorize @project
     @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to project_path(@project)
@@ -33,6 +37,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    authorize @project
     @project = Project.new(project_params)
     @project.house = House.find(1)
     if @project.save
@@ -46,6 +51,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+    authorize @project
     redirect_to projects_path
   end
 

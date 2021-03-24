@@ -1,19 +1,21 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :show, :destroy]
   def index
-    @blogs = Blog.all.includes([:rich_text_rich_body]).includes([:user])
+    @blogs = policy_scope(Blog.all.includes([:rich_text_rich_body]).includes([:user]))
   end
 
   def show
-
+    authorize @blog
   end
 
   def new
-  @blog = Blog.new
+    @blog = Blog.new
+    authorize @blog
   end
 
   def edit
     @blog = Blog.find(params[:id])
+    authorize @blog
   end
 
   def update
@@ -23,9 +25,11 @@ class BlogsController < ApplicationController
     else
       render :edit
     end
+    authorize @blog
   end
 
   def create
+    authorize @blog
     @blog = Blog.new(blog_params)
     @blog.house = House.find(1)
     @blog.user = current_user
@@ -39,6 +43,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     redirect_to blogs_path
+    authorize @blog
   end
 
   private
