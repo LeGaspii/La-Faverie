@@ -10,9 +10,13 @@ class ProjectsController < ApplicationController
     @task = Task.new
     @buying = Buying.new
     @usersproject = Usersproject.new
-    @usersprojects = Usersproject.where(project_id: @project)
+    @usersprojects = Usersproject.where(project_id: @project).includes([:user]).includes([:user])
+
+
     @comment = Comment.new
-    @comments = Comment.where(project_id: @project).last(50)
+    @comments = Comment.where(project_id: @project).includes([:rich_text_rich_body]).includes([:user]).last(50)
+
+
   end
 
   def new
