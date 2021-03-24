@@ -5,18 +5,15 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
     @tasks = Task.where(project_id: @project)
     @buyings = Buying.where(project_id: @project)
     @task = Task.new
     @buying = Buying.new
     @usersproject = Usersproject.new
     @usersprojects = Usersproject.where(project_id: @project).includes([:user]).includes([:user])
-
-
     @comment = Comment.new
     @comments = Comment.where(project_id: @project).includes([:rich_text_rich_body]).includes([:user]).last(50)
-
-
   end
 
   def new
@@ -37,6 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    authorize @project
     @project = Project.new(project_params)
     @project.house = House.find(1)
     if @project.save
