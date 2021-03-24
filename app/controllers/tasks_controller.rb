@@ -7,13 +7,16 @@ class TasksController < ApplicationController
   def new
   @project = Project.find(params[:project_id])
   @task = Task.new
+  authorize @task
   end
 
   def edit
+    authorize @task
     @task = Task.find(params[:id])
   end
 
   def update
+    authorize @task
     @task = Task.find(params[:id])
     @project = Project.find(@task.project_id)
     if @task.update(task_params)
@@ -27,6 +30,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.new(task_params)
     @task.project_id = @project.id
+    authorize @task
     if @task.save
       redirect_to project_path(@project)
     else
@@ -35,6 +39,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    authorize @task
     @task.destroy
     redirect_to tasks_path
   end

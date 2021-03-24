@@ -4,15 +4,18 @@ class BuyingsController < ApplicationController
   def new
   @project = Project.find(params[:project_id])
   @buying = Buying.new
+  authorize @buying
   end
 
   def edit
+    authorize @buying
     @buying = Buying.find(params[:id])
   end
 
   def update
     @project = Project.find(params[:project_id])
     @buying = Buying.find(params[:id])
+    authorize @buying
     if @buying.update(buying_params)
       redirect_to project_path(@project)
     else
@@ -24,6 +27,7 @@ class BuyingsController < ApplicationController
     @project = Project.find(params[:project_id])
     @buying = Buying.new(buying_params)
     @buying.project_id = @project.id
+    authorize @buying
     if @buying.save!
       redirect_to project_path(@project)
     else
@@ -32,6 +36,7 @@ class BuyingsController < ApplicationController
   end
 
   def destroy
+    authorize @buying
     @buying.destroy
     redirect_to buyings_path
   end

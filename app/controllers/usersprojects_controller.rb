@@ -2,15 +2,18 @@ class UsersprojectsController < ApplicationController
   before_action :set_usersproject, only: [:edit, :update, :destroy]
 
   def new
+  authorize @usersproject
   @usersproject = Usersproject.find(params[:project_id])
   end
 
   def edit
     @usersproject = Usersproject.find(params[:id])
+    authorize @usersproject
   end
 
   def update
     @project = Project.find(params[:project_id])
+    authorize @usersproject
     if @usersproject.update(usersproject_params)
       redirect_to project_path(@project)
     else
@@ -23,6 +26,7 @@ class UsersprojectsController < ApplicationController
     @usersproject = Usersproject.new(usersproject_params)
     @usersproject.user_id = current_user.id
     @usersproject.project_id = @project.id
+    authorize @usersproject
     if @usersproject.save
       redirect_to project_path(@project)
     else
@@ -31,6 +35,7 @@ class UsersprojectsController < ApplicationController
   end
 
   def destroy
+    authorize @usersproject
     @usersproject.destroy
     redirect_to usersprojects_path
   end

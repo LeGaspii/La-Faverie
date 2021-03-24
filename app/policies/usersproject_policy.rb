@@ -1,13 +1,11 @@
-class ProjectPolicy < ApplicationPolicy
+class UsersprojectPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
-  def new?
-    true
-  end
-  def show?
+
+  def new
     true
   end
   def create?
