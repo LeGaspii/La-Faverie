@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   validates :photo, presence: true
   # a reactiver si besoin : mail devise à personaliser
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
 
 
   private
