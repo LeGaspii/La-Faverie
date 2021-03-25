@@ -3,12 +3,12 @@
     <%= f.input :name, input_html: { placeholder: "Nom du projet" } %>
     <span>Deadline</span>
     <%= f.text_field :deadline, data: { behavior: "flatpickr"}  %>
-    <%= f.input :budget, input_html: { placeholder: "One million dollars, " } %>
+    <%= f.input :budget, input_html: { placeholder: "One million dollars !! " } %>
     <%= f.input :photo %>
   </div>
   <div class="form-inputs">
     <span>Descriptif du projet :</span>
-    <%= f.rich_text_area :rich_body %>
+    <%= f.rich_text_area :rich_body, placeholder: 'Tu peux commencer à écrire ici...         Il est possible d\'insérer des images.' %>
   </div>
   <div class="mt-2 form-actions text-white btn-gradient container text-center">
     <%= f.button :submit %>
