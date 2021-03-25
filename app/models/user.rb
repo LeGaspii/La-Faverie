@@ -10,13 +10,14 @@ class User < ApplicationRecord
   has_many :usersprojects, dependent: :destroy
   has_many :reservations, dependent: :destroy
   validates :photo, presence: true
-  after_create :send_welcome_email
+  # a reactiver si besoin : mail devise à personaliser
+  # after_create :send_welcome_email
 
 
   private
 
   def send_welcome_email
-    # UserMailer.with(user: self).welcome.deliver_now
+    UserMailer.with(user: self).welcome.deliver_now
   end
 
 end
