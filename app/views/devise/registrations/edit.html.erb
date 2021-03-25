@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Modifier ton compte <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -29,6 +29,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Birth_date" }%>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                input_html: { placeholder: "Ton adresse..." }%>
     <%= f.input :photo, as: :file,
                 required: true %>
     <%= f.input :password,
@@ -46,12 +50,12 @@
 
 <div class="container">
   <div class="form-actions btn btn-success">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Mettre à jour" %>
   </div>
 <% end %>
-<div class="btn btn-primary">
-  <%= link_to "Back", :back %>
+<div class="btn btn-warning">
+  <%= link_to "Retour", :back %>
 </div>
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Mécontent ? <%= link_to "Effacer mon compte", registration_path(resource_name), data: { confirm: "Es-tu certain de vouloir effacer ton compte ?" }, method: :delete %></p>
 
 </div>
