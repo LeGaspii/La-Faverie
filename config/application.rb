@@ -21,6 +21,9 @@ module LaFaverie
     config.action_mailer.postmark_settings = {
       api_token: ENV['postmark_api_token']
     }
+
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = :fr
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
