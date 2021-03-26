@@ -38,11 +38,11 @@
             <u><p>Liste des tâches :</p></u>
           <% @tasks.each do |task| %>
             <li class="my-2 d-flex justify-content-between">
-            <p><%= task.name.capitalize %></p>
+            <p <% if task.completed == true %> class="checked"<% end %>><%= task.name.capitalize %></p>
             <div>
               <%= form_for [ @project, task] do |f| %>
               <div class="btn-box">
-                <%= f.check_box :completed, onclick: "(this).closest('form').submit();" %>
+                <%= f.check_box :completed, onclick: "(this).closest('form').submit();"%>
               </div>
               <% end %>
             <% end %>
