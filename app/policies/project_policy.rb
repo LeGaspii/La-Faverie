@@ -17,6 +17,6 @@ class ProjectPolicy < ApplicationPolicy
     true
   end
   def destroy?
-    record.user == user
+    record.user_id == user.id
   end
 end

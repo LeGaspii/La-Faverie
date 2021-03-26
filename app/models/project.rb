@@ -17,4 +17,20 @@ class Project < ApplicationRecord
       end
     sum
   end
+
+  def project_task_count
+    task = Task.where(project_id: self).count
+  end
+
+  def project_task
+    task = Task.where(project_id: self)
+  end
+
+  def project_task_completed
+    project_task.where(completed: true).count
+  end
+
+  def project_advancement
+    project_task_completed.fdiv(project_task_count) * 100
+  end
 end
