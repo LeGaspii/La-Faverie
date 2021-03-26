@@ -4,7 +4,8 @@
          style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1200, height: 500, crop: :fill %>')">
         <div class="p-2 d-flex justify-content-between text-white h-100">
             <h1 class="mb-2 w-50"><%= @project.name %></h1>
-            <div class="d-flex align-items-end">
+            <div class="d-flex flex-column justify-content-between">
+              <p id="pourcentage"><%= @project.project_advancement.round %>% réalisé !</p>
               <p class="mb-2"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
             </div>
         </div>
@@ -20,6 +21,12 @@
       data: { confirm: "Are you sure?" },
       class: "mr-4 text-danger" %>
     </div>
+
+
+    <div id="igXPBar" style="opacity: 1; display: block;">
+      <div id="igXPBarProg" style="background-color: rgb(251, 192, 45); width: <%= @project.project_advancement %>%;"></div>
+    </div>
+
 
     <div class="p-2 mt-2 bg-white">
       <p class="text-gray"><%= @project.rich_body  %></p>
