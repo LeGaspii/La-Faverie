@@ -1,20 +1,15 @@
 import { flatpickr } from '../component/flatpickr';
-
-const startDateInput = document.getElementById('reservation_date_in');
-const endDateInput = document.getElementById('reservation_date_out');
-console.log(startDateInput)
-console.log(endDateInput)
+// import flatpickr from "flatpickr"
+require("flatpickr/dist/flatpickr.css")
+import { French } from "flatpickr/dist/l10n/fr.js"
 
 flatpickr("[data-behavior='flatpickr']", {
   altInput: true,
-  minDate: "today",
-  altFormat: "F j, Y",
+  altFormat: "j F, Y",
   dateFormat: "d-m-Y",
   "locale": French,
+  minDate: "today",
 })
-
-
-/
 
 
 export {flatpickr};

@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
     if @room.save!
       redirect_to room_path(@room)
     else
-      render :new
+      render :show
     end
   end
 

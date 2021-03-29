@@ -29,8 +29,7 @@ class ReservationsController < ApplicationController
     authorize @reservation
     if @reservation.save
       redirect_to room_path(@room)
-    else
-      render :new
+
     end
   end
 

@@ -25,7 +25,7 @@ require("flatpickr")
 
 // External imports
 import "bootstrap";
-import flatpickr from "flatpickr"
+// import flatpickr from "flatpickr"
 require("flatpickr/dist/flatpickr.css")
 import { French } from "flatpickr/dist/l10n/fr.js"
 // Internal imports, e.g:
@@ -43,7 +43,9 @@ document.addEventListener('turbolinks:load', () => {
     altFormat: "j F, Y",
     dateFormat: "d-m-Y",
     "locale": French,
+    minDate: "today",
   })
+
 });
 
 require("trix")

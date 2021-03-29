@@ -54,8 +54,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <div id="flat-booking-dates" class="container">
-              <%= simple_form_for [ @room, @reservation ] do |f| %>
+            <div id="flat-booking-dates" class="container" data-unavailable="<%= @room.unavailable_dates.to_json %>">
+              <%= simple_form_for [ @room, @reservation ], :remote => true do |f| %>
               <div class="form-inputs flatpickr">
                 <span>Date de début</span>
                 <%= f.text_field :date_in, data: { behavior: "flatpickr"} %>

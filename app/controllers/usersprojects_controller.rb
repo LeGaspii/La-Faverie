@@ -30,7 +30,7 @@ class UsersprojectsController < ApplicationController
     if @usersproject.save
       redirect_to project_path(@project)
     else
-      render :new
+      render :show
     end
   end
 
