@@ -8,7 +8,7 @@
     </div>
     <div>
       <% @reservations.each do |reservation|%>
-      <li><%= reservation.user.first_name %> du <% reservation.date_in  %> au <% reservation.date_out %></li>
+      <li><%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %></li>
       <% end %>
     </div>
     <div class="mt-4 d-flex justify-content-between">
@@ -54,7 +54,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="container" data-unavailable="<%= @room.unavailable_dates.to_json %>">
+            <div id="flat-booking-dates" class="container">
               <%= simple_form_for [ @room, @reservation ] do |f| %>
               <div class="form-inputs flatpickr">
                 <span>Date de début</span>
