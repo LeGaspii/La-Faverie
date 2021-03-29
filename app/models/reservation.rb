@@ -10,11 +10,14 @@ class Reservation < ApplicationRecord
       where "((date_in <= ?) and (date_out >= ?))", period_end, period_start
    end
 
+private
 
-  private
+  def room_reservation
+    Reservation.where(room_id: self.room_id)
+  end
 
   def no_reservation_overlap
-    if (Reservation.overlapping(date_in, date_out).any?)
+    if (room_reservation.overlapping(date_in, date_out).any?)
        errors.add(:date_out, 'it overlaps another reservation')
     end
   end
