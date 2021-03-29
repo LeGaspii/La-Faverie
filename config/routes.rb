@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :blogs
   resources :rooms do
-    resources :reservations
+    resources :reservations, only: [:new, :create, :edit, :destroy, :update, :index ]
     resources :perks, only: [:new, :create, :edit, :destroy, :update, :index ]
   end
   resources :tasks, only: [:show, :update]

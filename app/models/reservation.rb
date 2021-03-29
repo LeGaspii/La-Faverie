@@ -18,7 +18,7 @@ private
 
   def no_reservation_overlap
     if (room_reservation.overlapping(date_in, date_out).any?)
-       errors.add(:date_out, 'it overlaps another reservation')
+       errors.add(:date_out, 'Les dates chevauchent une reservations existantes !!')
     end
   end
 
