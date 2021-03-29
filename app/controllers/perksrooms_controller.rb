@@ -1,0 +1,3 @@
+class PerksroomsController < ApplicationController
+  
+end

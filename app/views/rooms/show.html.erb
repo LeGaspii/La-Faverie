@@ -1,23 +1,29 @@
 <div class="room container mt-1">
-  <div class="shadow bg-black mt-1">
+  <div class=" mt-1">
     <div class=" bg-size bg-cover bg-center">
       <div class="p-4 h-32 flex items-end text-black">
-        <h3 class="mb-2 text-4xl"><%= @room.house.name %></h3>
-        <h3 class="mb-2 text-4xl"><%= @room.name %></h3>
+        <h3 class="mb-2"><%= @room.house.name %></h3>
+        <h3 class="mb-2"><%= @room.name %></h3>
       </div>
+    </div>
+    <div>
+      <% @reservations.each do |reservation|%>
+      <li><%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %></li>
+      <% end %>
     </div>
     <div class="mt-4 d-flex justify-content-between">
       <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editRoom">
         Modifier la chambre
       </button>
-
-      <%= link_to "Effacer",
-      room_path(@room),
-      method: :delete,
-      data: { confirm: "Are you sure?" },
-      class: "mr-4 text-danger" %>
+      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editPerks">
+        Modifier les détails de la chambre
+      </button>
+      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#newReza">
+        Reserver cette chambres ?
+      </button>
     </div>
-
+  </div>
+</div>
     <!-- modal room-->
     <div class="modal fade" id="editRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -31,6 +37,35 @@
           <div class="modal-body">
             <div class="container">
               <%= render "form", rooms: @room %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal nouvelle reservation-->
+    <div class="modal fade" id="newReza" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Quand comptes-tu dormir dans cette chambre ?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="flat-booking-dates" class="container" data-unavailable="<%= @room.unavailable_dates.to_json %>">
+              <%= simple_form_for [ @room, @reservation ], :remote => true do |f| %>
+              <div class="form-inputs flatpickr">
+                <span>Date de début</span>
+                <%= f.text_field :date_in, data: { behavior: "flatpickr"} %>
+                <span>Date de fin</span>
+                <%= f.text_field :date_out, data: { behavior: "flatpickr"}  %>
+              </div>
+              <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
+                <%= f.button :submit, "Valider ta réservation ?" %>
+              </div>
+              <% end %>
             </div>
           </div>
         </div>
