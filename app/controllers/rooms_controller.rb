@@ -6,6 +6,8 @@ class RoomsController < ApplicationController
 
   def show
     authorize @room
+    @reservation = Reservation.new
+    @reservations = Reservation.where(room_id: @room)
   end
 
   def new
