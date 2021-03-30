@@ -2,8 +2,9 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:edit, :update, :destroy]
 
   def new
+  @room = Room.find(params[:room_id])
+  @reservation = Reservation.new
   authorize @reservation
-  @reservation = Reservation.find(params[:room_id])
   end
 
   def edit
@@ -29,7 +30,8 @@ class ReservationsController < ApplicationController
     authorize @reservation
     if @reservation.save
       redirect_to room_path(@room)
-
+    else
+      render :new
     end
   end
 

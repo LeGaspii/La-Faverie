@@ -8,7 +8,10 @@
     </div>
     <div>
       <% @reservations.each do |reservation|%>
-      <li><%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %></li>
+      <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %>
+        <% Familly.where(user_id: reservation.user.id).each do |member| %> <%= member.prenom  %>,   <% end %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %>
+
+      </li>
       <% end %>
     </div>
     <div class="mt-4 d-flex justify-content-between">
@@ -18,10 +21,8 @@
       <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editPerks">
         Modifier les détails de la chambre
       </button>
-      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#newReza">
-        Reserver cette chambres ?
-      </button>
-    </div>
+
+  <%= link_to "Nouvelle reservation", new_room_reservation_path(@room, @reservation), class: "btn btn-gradient" %>    </div>
   </div>
 </div>
     <!-- modal room-->
@@ -37,35 +38,6 @@
           <div class="modal-body">
             <div class="container">
               <%= render "form", rooms: @room %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- modal nouvelle reservation-->
-    <div class="modal fade" id="newReza" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Quand comptes-tu dormir dans cette chambre ?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div id="flat-booking-dates" class="container" data-unavailable="<%= @room.unavailable_dates.to_json %>">
-              <%= simple_form_for [ @room, @reservation ], :remote => true do |f| %>
-              <div class="form-inputs flatpickr">
-                <span>Date de début</span>
-                <%= f.text_field :date_in, data: { behavior: "flatpickr"} %>
-                <span>Date de fin</span>
-                <%= f.text_field :date_out, data: { behavior: "flatpickr"}  %>
-              </div>
-              <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
-                <%= f.button :submit, "Valider ta réservation ?" %>
-              </div>
-              <% end %>
             </div>
           </div>
         </div>
