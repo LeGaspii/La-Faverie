@@ -33,13 +33,13 @@
             <%= link_to "Nouveau projet", new_project_path, class: "dropdown-item" %>
             <%= link_to "Nouvelle room", new_room_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to "Edit user", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "Editer utilisateur", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link  text-white" %>
+          <%= link_to "Se connecter", new_user_session_path, class: "nav-link  text-white" %>
         </li>
       <% end %>
     </ul>
