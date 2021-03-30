@@ -8,7 +8,10 @@
     </div>
     <div>
       <% @reservations.each do |reservation|%>
-      <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %></li>
+      <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %>
+        <% Familly.where(user_id: reservation.user.id).each do |member| %> <%= member.prenom  %>,   <% end %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %>
+
+      </li>
       <% end %>
     </div>
     <div class="mt-4 d-flex justify-content-between">

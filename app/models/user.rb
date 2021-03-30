@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :reservations
   has_many :usersprojects, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :famillies, dependent: :destroy
   validates :photo, presence: true
   # a reactiver si besoin : mail devise à personaliser
   after_create :send_welcome_email
