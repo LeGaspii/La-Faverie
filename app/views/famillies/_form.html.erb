@@ -1,8 +1,9 @@
-<%= simple_form_for [ @room, ], :remote => true do |f| %>
+<%= simple_form_for [ @familly, ], :remote => true do |f| %>
 <div class="form-inputs flatpickr">
-<%= f.input :name, input_html: { placeholder: " Chambre Arc-en-ciel" } %>
+<%= f.input :nom, input_html: { placeholder: " Jean-Michel" } %>
+<%= f.input :prenom, input_html: { placeholder: " Exemple" } %>
 </div>
 <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
-  <%= f.button :submit, "Valider ta réservation ?" %>
+  <%= f.button :submit, "Ajouter à ta famille" %>
 </div>
 <% end %>

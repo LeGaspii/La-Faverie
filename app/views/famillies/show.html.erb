@@ -1,42 +1,6 @@
-<div class="room container mt-1">
-  <div class=" mt-1">
-    <div class=" bg-size bg-cover bg-center">
-      <div class="p-4 h-32 flex items-end text-black">
-        <h3 class="mb-2"><%= @room.house.name %></h3>
-        <h3 class="mb-2"><%= @room.name %></h3>
-      </div>
-    </div>
-    <div>
-      <% @reservations.each do |reservation|%>
-      <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %></li>
-      <% end %>
-    </div>
-    <div class="mt-4 d-flex justify-content-between">
-      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editRoom">
-        Modifier la chambre
-      </button>
-      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editPerks">
-        Modifier les détails de la chambre
-      </button>
+<div class="container">
+<% @familly.each |menber| do %>
+  <li> <% menber.prenom %> </li>
+<% end %>
 
-  <%= link_to "Nouvelle reservation", new_room_reservation_path(@room, @reservation), class: "btn btn-gradient" %>    </div>
-  </div>
 </div>
-    <!-- modal room-->
-    <div class="modal fade" id="editRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Vous pouvez modifier les données</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <%= render "form", rooms: @room %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
