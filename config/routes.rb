@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :blogs
+  resources :famillies, only: [:new, :create, :edit, :destroy, :update, :index ]
   resources :rooms do
     resources :reservations, only: [:new, :create, :edit, :destroy, :update, :index ]
     resources :perks, only: [:new, :create, :edit, :destroy, :update, :index ]
