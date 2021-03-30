@@ -6,6 +6,8 @@ class RoomsController < ApplicationController
 
   def show
     authorize @room
+    @reservation = Reservation.new
+    @reservations = Reservation.where(room_id: @room)
   end
 
   def new
@@ -35,14 +37,14 @@ class RoomsController < ApplicationController
     if @room.save!
       redirect_to room_path(@room)
     else
-      render :new
+      render :show
     end
   end
 
   def destroy
     authorize @room
-    @project.destroy
-    redirect_to projects_path
+    @room.destroy
+    redirect_to rooms_path
   end
 
   private

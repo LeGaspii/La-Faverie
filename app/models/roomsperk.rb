@@ -1,0 +1,2 @@
+class Roomsperk < ApplicationRecord
+end
