@@ -16,6 +16,6 @@ class BuyingPolicy < ApplicationPolicy
     true
   end
   def destroy?
-    record.user == user
+    true
   end
 end

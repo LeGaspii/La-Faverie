@@ -10,7 +10,7 @@
     <span>Descriptif du projet :</span>
     <%= f.rich_text_area :rich_body, placeholder: 'Tu peux commencer à écrire ici...         Il est possible d\'insérer des images.' %>
   </div>
-  <div class="mt-2 form-actions text-white btn-gradient container text-center">
-    <%= f.button :submit %>
+  <div class="mt-2 form-actions text-white container text-center">
+    <%= f.button :submit, "Créer/Modifier un projet", class: "btn btn-gradient" %>
   </div>
 <% end %>

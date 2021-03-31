@@ -18,7 +18,7 @@
         <%= link_to "Effacer",
         project_path(@project),
         method: :delete,
-        data: { confirm: "Are you sure?" },
+        data: { confirm: "Es-tu certain ?" },
         class: "mr-4 text-danger" %>
 
     </div>
@@ -78,6 +78,9 @@
           <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addBuying">
             Ajouter un achat
           </button>
+          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editBuyings">
+            Modifier les achats
+          </button>
       </div>
     </div>
 
@@ -112,9 +115,11 @@
         </div>
       </div>
       <% end %>
-          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#Question">
+      <div class="text-center">
+          <button type="button" class="btn btn-gradient text-center" data-toggle="modal" data-target="#Question">
             Poser une question ?
           </button>
+        </div>
     </div>
   </div>
 </div>
@@ -156,8 +161,8 @@
             <%= f.input :number %>
             <%= f.input :value %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center">
+            <%= f.button :submit, class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -182,8 +187,8 @@
           <div class="form-inputs">
             <%= f.input :name %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center modal-footer">
+            <%= f.button :submit, class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -211,8 +216,8 @@
             <span>Date de fin</span>
             <%= f.text_field :date_end, data: { behavior: "flatpickr"}  %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
-            <%= f.button :submit, "Rejoindre le projet ?" %>
+          <div class="mt-2 form-actions text-center modal-footer">
+            <%= f.button :submit, "Rejoindre le projet ?", class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -220,6 +225,34 @@
     </div>
   </div>
 </div>
+
+<!-- modal modifier les achats-->
+<div class="modal fade" id="editBuyings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Quelle tâche veux-tu modifier ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-between">
+        <% @buyings.each do |buying| %>
+        <div class="">
+          <span><%= buying.name.capitalize %></span>
+          <span> <%= link_to "Modifier", edit_project_buying_path(@project, buying) %></span>
+          <%= link_to "Effacer",
+          project_buying_path(@project, buying),
+          method: :delete,
+          data: { confirm: "Es-tu certain ?" },
+          class: "mr-4 text-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- modal Questions-->
 <div class="modal fade" id="Question" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -237,8 +270,8 @@
           <div class="form-inputs">
             <%= f.rich_text_area :rich_body %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center modal-footer">
+            <%= f.button :submit, class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -260,8 +293,13 @@
       <div class="modal-body d-flex justify-content-between">
         <% @tasks.each do |task| %>
         <div class="">
-           <span><%= task.name %></span>
-           <span> <%= link_to "modifier", edit_project_task_path(@project, task) %></span>
+           <span><%= task.name.capitalize %></span>
+           <span> <%= link_to "Modifier", edit_project_task_path(@project, task) %></span>
+           <%= link_to "Effacer",
+           project_task_path(@project, task),
+           method: :delete,
+           data: { confirm: "Es-tu certain ?" },
+           class: "mr-4 text-danger" %>
           <% end %>
         </div>
       </div>

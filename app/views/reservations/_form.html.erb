@@ -5,7 +5,7 @@
   <span>Date de fin</span>
   <%= f.text_field :date_out, data: { behavior: "flatpickr"}  %>
 </div>
-<div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
-  <%= f.button :submit, "Valider ta réservation ?" %>
+<div class="mt-2 form-actions text-center modal-footer">
+  <%= f.button :submit, "Valider ta réservation ?", class: "btn btn-gradient"%>
 </div>
 <% end %>

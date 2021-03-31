@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :perks, only: [:new, :create, :edit, :destroy, :update, :index ]
   end
   resources :tasks, only: [:show, :update]
+  resources :buyings, only: [:show, :update]
   resources :projects do
     resources :tasks, only: [:new, :create, :edit, :destroy, :update]
     resources :buyings, only: [:new, :create, :edit, :destroy, :update ]
