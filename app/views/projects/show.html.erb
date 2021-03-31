@@ -263,7 +263,7 @@
 </div>
 
 <!-- modal modifier les taches-->
-<div class="modal fade" id="editTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="editTaskds" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -278,12 +278,12 @@
         <div class="">
            <span><%= task.name.capitalize %></span>
            <span> <%= link_to "Modifier", edit_project_task_path(@project, task) %></span>
-           <%= link_to "Effacer",
+           <%# <%= link_to "Effacer",
            project_task_path(@project, task),
            method: :delete,
            data: { confirm: "Es-tu certain ?" },
            class: "mr-4 text-danger" %>
-          <% end %>
+          <% end %> %>
         </div>
       </div>
       </div>
