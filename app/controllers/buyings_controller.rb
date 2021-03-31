@@ -13,8 +13,8 @@ class BuyingsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @buying = Buying.find(params[:id])
+    @project = Project.find(@buying.project_id)
     authorize @buying
     if @buying.update(buying_params)
       redirect_to project_path(@project)
