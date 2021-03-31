@@ -52,7 +52,7 @@
               <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addTask">
                 Ajouter une tâche
               </button>
-              <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editTask">
+              <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editTasks">
                 Modifier les tâches
               </button>
             </div>
@@ -130,8 +130,6 @@
   </div>
 </div>
 
-
-
 <!-- modal projet-->
 <div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -165,9 +163,9 @@
         <div class="container">
           <%= simple_form_for [ @project, @buying ], :remote => true do |f| %>
           <div class="form-inputs">
-            <%= f.input :name, placeholder: 'Description(nom)' %>
-            <%= f.input :number, placeholder: 'Nombre d\'unité' %>
-            <%= f.input :value, placeholder: 'Prix unitaire' %>
+            <%= f.input :name %>
+            <%= f.input :number %>
+            <%= f.input :value %>
           </div>
           <div class="mt-2 form-actions btn btn-gradient container text-center">
             <%= f.button :submit %>
@@ -193,10 +191,10 @@
         <div class="container">
           <%= simple_form_for [ @project, @task ], :remote => true do |f| %>
           <div class="form-inputs">
-            <%= f.input :name, placeholder: 'Nom de la tâche à réaliser ...' %>
+            <%= f.input :name %>
           </div>
-          <div class="mt-2 form-actions container text-center modal-footer">
-            <%= f.button :submit, class: "btn btn-gradient" %>
+          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
+            <%= f.button :submit %>
           </div>
           <% end %>
         </div>
@@ -224,36 +222,9 @@
             <span>Date de fin</span>
             <%= f.text_field :date_end, data: { behavior: "flatpickr"}  %>
           </div>
-          <div class="mt-2 form-actions text-center modal-footer">
-            <%= f.button :submit, "Rejoindre le projet ?", class: "btn btn-gradient" %>
+          <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
+            <%= f.button :submit, "Rejoindre le projet ?" %>
           </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- modal modifier les achats-->
-<div class="modal fade" id="editBuyings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Quelle tâche veux-tu modifier ?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body d-flex justify-content-between">
-        <% @buyings.each do |buying| %>
-        <div class="">
-          <span><%= buying.name.capitalize %></span>
-          <span> <%= link_to "Modifier", edit_project_buying_path(@project, buying) %></span>
-          <%= link_to "Effacer",
-          project_buying_path(@project, buying),
-          method: :delete,
-          data: { confirm: "Es-tu certain ?" },
-          class: "mr-4 text-danger" %>
           <% end %>
         </div>
       </div>
@@ -275,10 +246,10 @@
         <div class="container">
           <%= simple_form_for [ @project, @comment ] do |f| %>
           <div class="form-inputs">
-            <%= f.rich_text_area :rich_body, placeholder: 'Ta question ...' %>
+            <%= f.rich_text_area :rich_body %>
           </div>
-          <div class="mt-2 form-actions container text-center modal-footer">
-            <%= f.button :submit, class: "btn btn-gradient" %>
+          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
+            <%= f.button :submit %>
           </div>
           <% end %>
         </div>
@@ -286,3 +257,30 @@
     </div>
   </div>
 </div>
+
+<!-- modal modifier les taches-->
+<div class="modal fade" id="editTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Quelle tâche veux-tu modifier ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex flex-column justify-content-between">
+        <% @tasks.each do |task| %>
+        <div class="">
+           <span><%= task.name.capitalize %></span>
+           <span> <%= link_to "Modifier", edit_project_task_path(@project, task) %></span>
+           <%= link_to "Effacer",
+           project_path(@project, task),
+           method: :delete,
+           data: { confirm: "Es-tu certain ?" },
+           class: "mr-4 text-danger" %>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
