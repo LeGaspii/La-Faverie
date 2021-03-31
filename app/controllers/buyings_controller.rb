@@ -8,13 +8,13 @@ class BuyingsController < ApplicationController
   end
 
   def edit
-    authorize @buying
     @buying = Buying.find(params[:id])
+    authorize @buying
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @buying = Buying.find(params[:id])
+    @project = Project.find(@buying.project_id)
     authorize @buying
     if @buying.update(buying_params)
       redirect_to project_path(@project)
@@ -36,9 +36,10 @@ class BuyingsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     authorize @buying
     @buying.destroy
-    redirect_to buyings_path
+    redirect_to project_path(@project)
   end
 
   private
