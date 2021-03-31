@@ -1,10 +1,10 @@
 <%= simple_form_for [ @project, @buying ] do |f| %>
 <div class="form-inputs">
-  <%= f.input :name %>
-  <%= f.input :number %>
-  <%= f.input :value %>
+  <%= f.input :name, placeholder: "Description(nom)" %>
+  <%= f.input :number, placeholder: "Nb unité" %>
+  <%= f.input :value, placeholder: "Prix unitaire" %>
 </div>
 <div class="mt-2 form-actions container text-center">
-  <%= f.button :submit, class: "btn btn-gradient" %>
+  <%= f.button :submit, "Enregistrer ?", class: "btn btn-gradient" %>
 </div>
 <% end %>

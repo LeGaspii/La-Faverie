@@ -78,14 +78,14 @@
           <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#addBuying">
             Ajouter un achat
           </button>
-          <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editBuyings">
+          <!-- <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editBuyings">
             Modifier les achats
-          </button>
+          </button> -->
       </div>
     </div>
 
     <div class="tasks-display tasks p-2 border col-md-4 col-lg-4 col-12 col-sm-6">
-      <u><span class="text-center"> Qui etait la ? </span></u>
+      <u><span class="text-center"> Qui était la ? </span></u>
       <div class="card-whos">
 
         <% @usersprojects_past.each do |userproject| %>
@@ -163,13 +163,26 @@
         <div class="container">
           <%= simple_form_for [ @project, @buying ], :remote => true do |f| %>
           <div class="form-inputs">
-            <%= f.input :name %>
-            <%= f.input :number %>
-            <%= f.input :value %>
+            <%= f.input :name, placeholder: "Description(nom)" %>
+            <%= f.input :number, placeholder: "Nb unité" %>
+            <%= f.input :value, placeholder: "Prix unitaire" %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center">
+            <%= f.button :submit, "Ajouter un achat", class: "btn btn-gradient" %>
           </div>
+          <% end %>
+        </div>
+        <div class="container mt-2">
+          <% @buyings.each do |buying| %>
+            <li>
+              <span><%= buying.name.capitalize %></span>
+              <span> <%= link_to "Modifier", edit_project_buying_path(@project, buying) %></span>
+              <%= link_to "Effacer",
+              project_buying_path(@project, buying),
+              method: :delete,
+              data: { confirm: "Es-tu certain ?" },
+              class: "mr-4 text-danger" %>
+            </li>
           <% end %>
         </div>
       </div>
@@ -191,10 +204,10 @@
         <div class="container">
           <%= simple_form_for [ @project, @task ], :remote => true do |f| %>
           <div class="form-inputs">
-            <%= f.input :name %>
+            <%= f.input :name, placeholder: "Description de la tâche" %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center modal-footer">
+            <%= f.button :submit, class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -222,8 +235,8 @@
             <span>Date de fin</span>
             <%= f.text_field :date_end, data: { behavior: "flatpickr"}  %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient text-center modal-footer">
-            <%= f.button :submit, "Rejoindre le projet ?" %>
+          <div class="mt-2 form-actions text-center modal-footer">
+            <%= f.button :submit, "Rejoindre le projet ?", class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>
@@ -246,10 +259,10 @@
         <div class="container">
           <%= simple_form_for [ @project, @comment ] do |f| %>
           <div class="form-inputs">
-            <%= f.rich_text_area :rich_body %>
+            <%= f.rich_text_area :rich_body, placeholder: 'Tu peux commencer à écrire ici...         Il est possible d\'insérer des images.' %>
           </div>
-          <div class="mt-2 form-actions btn btn-gradient container text-center modal-footer">
-            <%= f.button :submit %>
+          <div class="mt-2 form-actions container text-center modal-footer">
+            <%= f.button :submit, class: "btn btn-gradient" %>
           </div>
           <% end %>
         </div>

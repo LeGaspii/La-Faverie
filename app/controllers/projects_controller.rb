@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     @buying = Buying.new
     @usersproject = Usersproject.new
     @usersprojects = Usersproject.where(project_id: @project).includes([:user])
-    @usersprojects_past = @usersprojects.where("date_end < ?", Date.today)
+    @usersprojects_past = @usersprojects.where("date_end < ?", Date.today).last(5)
     @usersprojects_futur = @usersprojects.where("date_end >= ?", Date.today)
     @comment = Comment.new
     @comments = Comment.where(project_id: @project).includes([:rich_text_rich_body]).includes([:user]).last(50)
@@ -29,8 +29,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    authorize @project
     @project = Project.find(params[:id])
+    authorize @project
     if @project.update(project_params)
       redirect_to project_path(@project)
     else
@@ -39,8 +39,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    authorize @project
     @project = Project.new(project_params)
+    authorize @project
     @project.house = House.find(1)
     if @project.save
       task = Task.new(project_id: @project.id, name: "example")
