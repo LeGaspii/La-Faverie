@@ -10,7 +10,9 @@ class ProjectsController < ApplicationController
     @task = Task.new
     @buying = Buying.new
     @usersproject = Usersproject.new
-    @usersprojects = Usersproject.where(project_id: @project).includes([:user]).includes([:user])
+    @usersprojects = Usersproject.where(project_id: @project).includes([:user])
+    @usersprojects_past = @usersprojects.where("date_end < ?", Date.today)
+    @usersprojects_futur = @usersprojects.where("date_end >= ?", Date.today)
     @comment = Comment.new
     @comments = Comment.where(project_id: @project).includes([:rich_text_rich_body]).includes([:user]).last(50)
     authorize @project
