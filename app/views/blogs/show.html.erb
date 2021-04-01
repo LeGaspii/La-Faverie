@@ -1,4 +1,4 @@
-<div class="container pt-1">
+<div class="container background pt-1">
   <div class="blog-title text-center">
     <h1><%= @blog.title.capitalize %></h1>
   </div>
@@ -9,7 +9,7 @@
         <li data-target='#blog-carousel' data-slide-to="<%= n+1 %>" class="<%='active' if n == 0%>"></li>
       <% end %>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner rounded">
       <% @blog.photos.each_with_index do |photo, n| %>
       <div class="carousel-item <%= "active" if n == 0 %>">
         <img class="d-block w-100" src="<%= cl_image_path photo.key, width: 800, height: 600, crop: :fill   %>" alt="<%= n+1 %> slide">
@@ -26,7 +26,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="blog-text">
+  <div class="blog-text rounded">
     <%= @blog.rich_body  %>
   </div>
   <button type="button" class="btn btn-gradient w-100" data-toggle="modal" data-target="#editBlog">
