@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_132544) do
+ActiveRecord::Schema.define(version: 2021_04_01_135258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 2021_03_30_132544) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "number"
+    t.bigint "room_id", null: false
+    t.index ["room_id"], name: "index_perks_on_room_id"
   end
 
   create_table "perksrooms", force: :cascade do |t|
@@ -192,6 +194,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_132544) do
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "famillies", "users"
+  add_foreign_key "perks", "rooms"
   add_foreign_key "perksrooms", "perks"
   add_foreign_key "perksrooms", "rooms"
   add_foreign_key "projects", "houses"
