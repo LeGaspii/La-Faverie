@@ -1,11 +1,12 @@
 <%= simple_form_for [ @room, @reservation ], :remote => true do |f| %>
+<h3>Quand viens-tu ?</h3>
 <div class="form-inputs flatpickr">
   <span>Date de début</span>
   <%= f.text_field :date_in, data: { behavior: "flatpickr"} %>
   <span>Date de fin</span>
   <%= f.text_field :date_out, data: { behavior: "flatpickr"}  %>
 </div>
-<div class="mt-2 form-actions text-center modal-footer">
+<div class="mt-2 form-actions text-center">
   <%= f.button :submit, "Valider ta réservation ?", class: "btn btn-gradient"%>
 </div>
 <% end %>

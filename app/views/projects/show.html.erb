@@ -1,6 +1,6 @@
 
 <div class="project background container pt-2 pb-2 mt-1">
-    <div class="background-img"
+    <div class="background-img rounded"
          style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1200, height: 500, crop: :fill %>')">
         <div class="p-2 d-flex justify-content-between text-white h-100">
             <h1 class="mb-2 w-50"><%= @project.name %></h1>
@@ -29,7 +29,7 @@
     </div>
 
 
-    <div class="p-2 mt-2 bg-white">
+    <div class="p-2 mt-2 bg-white rounded">
       <p class="text-gray"><%= @project.rich_body  %></p>
       <div class="d-flex justify-content-between row">
 
