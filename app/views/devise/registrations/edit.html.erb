@@ -1,61 +1,63 @@
-<h2>Modifier ton compte <%= resource_name.to_s.humanize %></h2>
+<div class="container background p-2">
+  <h3>Modifier ton compte ?</h3>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs container">
-    <%= f.input :email, required: true, autofocus: true %>
+    <div class="form-inputs container">
+      <%= f.input :email, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "mail" }%>
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "prénom ..." }%>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "nom de famille ..." }%>
-    <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "Pseudo ..." }%>
-    <%= f.input :birth_date,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "Date de naissance" }%>
-    <%= f.input :address,
-                required: true,
-                autofocus: true,
-                input_html: { placeholder: "Ton adresse..." }%>
-    <%= f.input :photo, as: :file,
-                required: true %>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { placeholder: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { placeholder: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { placeholder: "current-password" } %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "mail" }%>
+      <%= f.input :first_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "prénom ..." }%>
+      <%= f.input :last_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "nom de famille ..." }%>
+      <%= f.input :username,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "Pseudo ..." }%>
+      <%= f.input :birth_date,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "Date de naissance" }%>
+      <%= f.input :address,
+                  required: true,
+                  autofocus: true,
+                  input_html: { placeholder: "Ton adresse..." }%>
+      <%= f.input :photo, as: :file,
+                  required: true %>
+      <%= f.input :password,
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { placeholder: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { placeholder: "new-password" } %>
+      <%= f.input :current_password,
+                  hint: "we need your current password to confirm your changes",
+                  required: true,
+                  input_html: { placeholder: "current-password" } %>
+    </div>
+
+  <div class="container">
+    <div class="form-actions btn btn-success">
+      <%= f.button :submit, "Mettre à jour" %>
+    </div>
+  <% end %>
+  <div class="btn btn-warning">
+    <%= link_to "Retour", :back %>
   </div>
+  <p>Mécontent ? <%= link_to "Effacer mon compte", registration_path(resource_name), data: { confirm: "Es-tu certain de vouloir effacer ton compte ?" }, method: :delete, class: "text-warning" %></p>
 
-<div class="container">
-  <div class="form-actions btn btn-success">
-    <%= f.button :submit, "Mettre à jour" %>
   </div>
-<% end %>
-<div class="btn btn-warning">
-  <%= link_to "Retour", :back %>
-</div>
-<p>Mécontent ? <%= link_to "Effacer mon compte", registration_path(resource_name), data: { confirm: "Es-tu certain de vouloir effacer ton compte ?" }, method: :delete %></p>
-
 </div>
