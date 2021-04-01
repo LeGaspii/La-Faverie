@@ -1,4 +1,4 @@
-<div class="room container mt-1">
+<div class="room background container mt-1">
   <div class=" mt-1">
     <div class=" bg-size bg-cover bg-center d-flex justify-content-between">
       <div class="p-4 room-title">
@@ -24,9 +24,6 @@
     <div class="mt-4 d-flex justify-content-between">
       <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editRoom">
         Modifier la chambre
-      </button>
-      <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editPerks">
-        Modifier les détails de la chambre
       </button>
       <%= link_to "Nouvelle reservation", new_room_reservation_path(@room, @reservation), class: "btn btn-gradient" %>
       <%= link_to "Ajouter un élément à la chambre", new_room_perk_path(@room, @perk), class: "btn btn-gradient" %>
