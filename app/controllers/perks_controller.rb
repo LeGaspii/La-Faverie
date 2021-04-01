@@ -8,6 +8,7 @@ class PerksController < ApplicationController
   end
 
   def edit
+    @room = Room.find(params[:room_id])
     @perk = Perk.find(params[:id])
     authorize @perk
   end

@@ -1,12 +1,19 @@
 <div class="room container mt-1">
   <div class=" mt-1">
-    <div class=" bg-size bg-cover bg-center">
-      <div class="p-4 h-32 flex items-end text-black">
+    <div class=" bg-size bg-cover bg-center d-flex justify-content-between">
+      <div class="p-4 room-title">
         <h3 class="mb-2"><%= @room.house.name %></h3>
         <h3 class="mb-2"><%= @room.name %></h3>
       </div>
+      <div class="room-elements">
+        <% @perks.each do |perk| %>
+
+          <li><span><%= perk.number %><%= perk.name  %></span></li>
+        <% end %>
+      </div>
     </div>
-    <div>
+
+    <div class="room-reza">
       <% @reservations.each do |reservation|%>
       <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %>
         <% Familly.where(user_id: reservation.user.id).each do |member| %> <%= member.prenom  %>,   <% end %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %>
@@ -22,11 +29,11 @@
         Modifier les détails de la chambre
       </button>
       <%= link_to "Nouvelle reservation", new_room_reservation_path(@room, @reservation), class: "btn btn-gradient" %>
-      <%= link_to "Nouvelle perk", new_room_perk_path(@room, @perk), class: "btn btn-gradient" %>
-    </div>
+      <%= link_to "Ajouter un élément à la chambre", new_room_perk_path(@room, @perk), class: "btn btn-gradient" %>
     </div>
   </div>
 </div>
+
 <!-- modal room-->
 <div class="modal fade" id="editRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

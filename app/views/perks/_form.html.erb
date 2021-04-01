@@ -1,7 +1,7 @@
 <%= simple_form_for [ @room, @perk ] do |f| %>
 <div class="form-inputs">
-  <%= f.input :name %>
-  <%= f.input :number %>
+  <%= f.input :name, placeholder: "Element à ajouter à la chambre" %>
+  <%= f.input :number, placeholder: "Nombre d'éléments" %>
 </div>
 <div class="form-actions flex items-center px-4 py-2 text-white justify-self-center">
   <%= f.button :submit, "Ajouter un élément à la chambre", class: "btn btn-gradient" %>

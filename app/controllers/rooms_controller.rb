@@ -1,18 +1,20 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update, :show, :destroy]
+
   def index
     @rooms = policy_scope(Room.all)
   end
 
   def show
-    authorize @room
+    @perks = Perk.where(room_id: @room)
     @reservation = Reservation.new
     @reservations = Reservation.where(room_id: @room)
+    authorize @room
   end
 
   def new
   @room = Room.new
-    authorize @room
+  authorize @room
   end
 
   def edit
