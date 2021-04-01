@@ -2,6 +2,7 @@ class PerksController < ApplicationController
   before_action :set_perk, only: [:edit, :update, :destroy]
 
   def new
+    @room = Room.find(params[:room_id])
     @perk = Perk.new
     authorize @perk
   end
