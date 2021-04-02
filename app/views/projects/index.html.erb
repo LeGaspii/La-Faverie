@@ -1,24 +1,23 @@
 <div class="container">
-<% @projects.each do |project| %>
-          <%= link_to project_path(project) do %>
-<div class="mt-1 card-project">
-    <div class="bg-img"
-         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path project.photo.key, width: 800, height: 300, :crop=>"fill" %>')">
-        <div class="project-title p-4 text-white">
-            <h2 class="mb-2 font-weight-bold"><%= project.name.upcase %></h2>
-        </div>
+  <% @projects.each do |project| %>
+    <%= link_to project_path(project) do %>
+    <div class="mt-1 card-project">
+      <div class="bg-img"
+           style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path project.photo.key, width: 800, height: 300, :crop=>"fill" %>')">
+          <div class="project-title p-4 text-white">
+              <h2 class="mb-2 font-weight-bold"><%= project.name.upcase %></h2>
+          </div>
+      </div>
+      <% end %>
+      <div class="p-4">
+            <p class="text-project"><%= strip_tags(project.rich_body.to_s).truncate(400)  %></p>
+          <div class="mt-4 d-flex align-items-end justify-content-between">
+            <%= link_to project_path(project) do %>
+                <p class="no-underline mr-4 text-blue-500 hover:text-blue-400"><strong>En savoir plus</strong></p>
+              <% end %>
+              <p class="mr-4 text-blue-500"> à terminer avant : <%= project.deadline.strftime("%d %m %Y")%> (encore <%= -project.day_until_end  %> jours)</p>
+          </div>
+      </div>
     </div>
-    <% end %>
-    <div class="p-4">
-          <p class="text-project"><%= strip_tags(project.rich_body.to_s).truncate(400)  %></p>
-        <div class="mt-4 d-flex align-items-end justify-content-between">
-          <%= link_to project_path(project) do %>
-              <p class="no-underline mr-4 text-blue-500 hover:text-blue-400"><strong>En savoir plus</strong></p>
-            <% end %>
-            <p class="mr-4 text-blue-500"> à terminer avant : <%= project.deadline.strftime("%d %m %Y")%> (encore <%= -project.day_until_end  %> jours)</p>
-        </div>
-    </div>
-</div>
-<% end %>
-
+  <% end %>
 </div>

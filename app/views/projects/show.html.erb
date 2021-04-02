@@ -6,7 +6,7 @@
             <h1 class="project-title mb-2 w-50"><%= @project.name %></h1>
             <div class="d-flex flex-column justify-content-between">
               <p id="pourcentage"><%= @project.project_advancement.round %>% réalisé !</p>
-              <p class="mb-2"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %></p>
+              <p class="mb-2"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %> (encore <%= -@project.day_until_end  %> jours)</p>
             </div>
         </div>
     </div>
