@@ -8,4 +8,16 @@
   border-radius: 5px;
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-decoration: none;
+
+}
+
+.project-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.text-project {
+  text-decoration: none;
+  color: black;
 }

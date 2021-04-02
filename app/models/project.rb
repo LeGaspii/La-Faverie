@@ -19,11 +19,11 @@ class Project < ApplicationRecord
   end
 
   def project_task_count
-    task = Task.where(project_id: self).count
+    Task.where(project_id: self).count
   end
 
   def project_task
-    task = Task.where(project_id: self)
+    Task.where(project_id: self)
   end
 
   def project_task_completed
@@ -32,5 +32,9 @@ class Project < ApplicationRecord
 
   def project_advancement
     project_task_completed.fdiv(project_task_count) * 100
+  end
+
+  def day_until_end
+    (Date.today - self.deadline).round
   end
 end
