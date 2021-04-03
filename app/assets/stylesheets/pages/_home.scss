@@ -1,7 +1,14 @@
 // Specific CSS for your home-page
 .home-wrapper {
-  height: calc(100vh - 80px);;
+  height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #0f3057;
+}
+
+video {
+  margin-top: 10px;
+  max-width: 100%;
+
 }
