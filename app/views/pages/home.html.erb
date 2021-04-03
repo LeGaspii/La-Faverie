@@ -1,8 +1,12 @@
 
 <div class="home-wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path "https://res.cloudinary.com/dqehqrmss/image/upload/v1616000969/background_d5dss6.jpg", height: 1000, crop: :fill %>')">
-  <div>
+  <div class="text-center">
     <%= link_to projects_path do %>
       <%= cl_image_tag "https://res.cloudinary.com/dqehqrmss/image/upload/v1615842190/la_fav_gneoj8.webp ", width: 400, crop: :fill %>
     <% end %>
+    <div class="d-none d-sm-block video">
+      <%= cl_video_tag("LAfav", :loop => true, :autoplay => true, :poster => false, controls: true,
+  :fallback_content => "Your browser does not support HTML5 video tags" )%>
+    </div>
   </div>
 </div>
