@@ -6,10 +6,14 @@
   justify-content: center;
   background-color: #0f3057;
   background-repeat:no-repeat;
-  background-position:center;  
+  background-position:center;
 }
 
 video {
   margin-top: 10px;
   max-width: 100%;
+}
+
+.hidden {
+  display: none;
 }
