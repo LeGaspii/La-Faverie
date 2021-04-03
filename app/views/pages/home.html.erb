@@ -4,8 +4,8 @@
       <%= cl_image_tag "https://res.cloudinary.com/dqehqrmss/image/upload/v1615842190/la_fav_gneoj8.webp ", width: 400, crop: :fill %>
     <% end %>
     <div class="d-none d-sm-block video">
-      <%= cl_video_tag("LAfav", :loop => true, :autoplay => true, :poster => true, controls: true,
-  :fallback_content => "Your browser does not support HTML5 video tags" )%>
+      <%= cl_video_tag("LAfav", :autoplay => true, :poster => true, controls: true,
+  :fallback_content => "Your browser does not support HTML5 video tags", onended: "this.classList.add('hidden');")%>
     </div>
   </div>
 </div>
