@@ -103,6 +103,9 @@
           <%= link_to edit_project_usersproject_path(@project, userproject), class: 'edit-button' do %>
           <%= icon('fas', 'wrench')  %>
           <% end %>
+          <%= link_to project_usersproject_path(@project, userproject), class: 'edit-button', method: :delete, data: { confirm: "Es-tu certain ?" } do %>
+          <%= icon('fas', 'trash')  %>
+          <% end %>
         <% end %>
        </span>
       </li>

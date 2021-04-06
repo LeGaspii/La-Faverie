@@ -29,7 +29,7 @@
   <div class="blog-text rounded">
     <%= @blog.rich_body  %>
   </div>
-  <% if @blog.user_id == current_user %>
+  <% if @blog.user == current_user %>
   <button type="button" class="btn btn-gradient w-100" data-toggle="modal" data-target="#editBlog">
       Modifier l'article
     </button>
