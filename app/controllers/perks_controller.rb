@@ -37,9 +37,10 @@ class PerksController < ApplicationController
   end
 
   def destroy
+    @room = Room.find(params[:room_id])
     @perk.destroy
     authorize @perk
-    redirect_to rooms_path
+    redirect_to room_path(@room)
   end
 
   private
