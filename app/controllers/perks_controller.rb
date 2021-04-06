@@ -37,8 +37,8 @@ class PerksController < ApplicationController
   end
 
   def destroy
-    authorize @perk
     @perk.destroy
+    authorize @perk
     redirect_to rooms_path
   end
 
