@@ -7,7 +7,7 @@ class UsersprojectsController < ApplicationController
   end
 
   def edit
-    @usersproject = Usersproject.find(params[:id])
+    @project = Project.find(params[:project_id])
     authorize @usersproject
   end
 
@@ -42,7 +42,7 @@ class UsersprojectsController < ApplicationController
 
   private
   def set_usersproject
-    @usersproject = Userproject.find(params[:id])
+    @usersproject = Usersproject.find(params[:id])
   end
 
   def usersproject_params

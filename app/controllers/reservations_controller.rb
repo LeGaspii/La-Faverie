@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation = Reservation.find(params[:id])
+    @room = Room.find(params[:room_id])
     authorize @reservation
   end
 
@@ -36,14 +36,15 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    authorize @reservation
+    @room = Room.find(params[:room_id])
     @reservation.destroy
-    redirect_to rooms_path
+    authorize @reservation
+    redirect_to room_path(@room)
   end
 
   private
   def set_reservation
-    @reservation = reservation.find(params[:id])
+    @reservation = Reservation.find(params[:id])
   end
 
   def reservation_params

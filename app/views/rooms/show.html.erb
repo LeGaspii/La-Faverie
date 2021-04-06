@@ -7,7 +7,14 @@
       </div>
       <div class="room-elements">
         <% @perks.each do |perk| %>
-          <li><span><%= perk.number %> - <%= perk.name  %></span></li>
+          <li><span><%= perk.number %> - <%= perk.name  %>
+            <%= link_to edit_room_perk_path(@room, perk), class: 'edit-button' do %>
+            <%= icon('fas', 'wrench')  %>
+            <% end %>
+            <%= link_to room_perk_path(@room, perk), class: 'edit-button', method: :delete, data: { confirm: "Es-tu certain ?" } do %>
+            <%= icon('fas', 'trash')  %>
+            <% end %>
+          </span></li>
         <% end %>
       </div>
     </div>
@@ -16,6 +23,14 @@
       <% @reservations.each do |reservation|%>
       <li><%= cl_image_tag reservation.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %>
         <% Familly.where(user_id: reservation.user.id).each do |member| %> <%= member.prenom  %>,   <% end %> <%= reservation.user.first_name %> du <%= reservation.date_in  %> au <%= reservation.date_out %>
+        <% if reservation.user_id == current_user %>
+          <%= link_to edit_room_reservation_path(@room, reservation), class: 'edit-button' do %>
+          <%= icon('fas', 'wrench')  %>
+          <% end %>
+          <%= link_to room_reservation_path(@room, reservation), class: 'edit-button', method: :delete, data: { confirm: "Es-tu certain ?" } do %>
+          <%= icon('fas', 'trash')  %>
+          <% end %>
+        <% end %>
       </li>
       <% end %>
     </div>
