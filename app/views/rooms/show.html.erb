@@ -11,6 +11,9 @@
             <%= link_to edit_room_perk_path(@room, perk), class: 'edit-button' do %>
             <%= icon('fas', 'wrench')  %>
             <% end %>
+            <%= link_to room_perk_path(@room, perk), class: 'edit-button', method: :delete, data: { confirm: "Es-tu certain ?" } do %>
+            <%= icon('fas', 'trash')  %>
+            <% end %>
           </span></li>
         <% end %>
       </div>
