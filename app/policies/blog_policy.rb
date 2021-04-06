@@ -15,7 +15,7 @@ class BlogPolicy < ApplicationPolicy
     true
   end
   def update?
-    true
+    record.user == user
   end
   def destroy?
     record.user == user
