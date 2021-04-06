@@ -1,0 +1,11 @@
+<%= simple_form_for [ @project, @usersproject ] do |f| %>
+<div class="form-inputs flatpickr">
+  <span>Date de début</span>
+  <%= f.text_field :date_start, data: { behavior: "flatpickr"} %>
+  <span>Date de fin</span>
+  <%= f.text_field :date_end, data: { behavior: "flatpickr"}  %>
+</div>
+<div class="mt-2 form-actions text-center modal-footer">
+  <%= f.button :submit, "Rejoindre le projet ?", class: "btn btn-gradient" %>
+</div>
+<% end %>

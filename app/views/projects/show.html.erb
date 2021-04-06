@@ -96,7 +96,15 @@
       <u><span class="text-center"> Qui sera la ? </span></u>
       <% @usersprojects_futur.each do |userproject| %>
       <li>
-        <span><%= cl_image_tag userproject.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %><strong><%= userproject.user.first_name.capitalize %></strong> <strong><%= userproject.user.last_name.split("").first.capitalize %>.</strong> du <%= userproject.date_start.strftime("%d %m %Y") %> au <%= userproject.date_end.strftime("%d %m %Y") %></span>
+        <span><%= cl_image_tag userproject.user.photo.key, width: 150, crop: :thumb, gravity: :face, class: "avatar-small" %><strong>
+        <%= userproject.user.first_name.capitalize %></strong> <strong><%= userproject.user.last_name.split("").first.capitalize %>.</strong>
+        du <%= userproject.date_start.strftime("%d %m %Y") %> au <%= userproject.date_end.strftime("%d %m %Y") %>
+        <% if userproject.user_id == current_user %>
+          <%= link_to edit_project_usersproject_path(@project, userproject), class: 'edit-button' do %>
+          <%= icon('fas', 'wrench')  %>
+          <% end %>
+        <% end %>
+       </span>
       </li>
         <% end %>
       </div>
