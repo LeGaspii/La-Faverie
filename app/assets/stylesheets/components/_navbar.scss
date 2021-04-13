@@ -11,3 +11,25 @@
 .navbar-lewagon .navbar-brand img {
   width: 70px;
 }
+
+.highlight {
+  transition: all 0.2s;
+  border-bottom: 2px solid #00587a;
+  position: absolute;
+  top: 0;
+  background: #008891;
+  left: 0;
+  z-index: 0;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  z-index: 1;
+}
