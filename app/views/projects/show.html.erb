@@ -3,7 +3,7 @@
     <div class="background-img rounded"
          style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path @project.photo.key, width: 1200, height: 500, crop: :fill %>')">
         <div class="p-2 d-flex justify-content-between text-white h-100">
-            <h1 class="project-title mb-2 w-50"><%= @project.name %></h1>
+            <h1 data-name="<%= @project.name %>" data-percent="<%= @project.project_advancement.round %>" class="project-title mb-2 w-50"><%= @project.name %></h1>
             <div class="d-flex flex-column justify-content-between">
               <p id="pourcentage"><%= @project.project_advancement.round %>% réalisé !</p>
               <p class="mb-2"> à terminer avant : <%= @project.deadline.strftime("%d %m %Y") %> (encore <%= -@project.day_until_end  %> jours)</p>

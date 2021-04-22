@@ -31,6 +31,7 @@ import { French } from "flatpickr/dist/l10n/fr.js"
 // Internal imports, e.g:
 import { auto_close } from '../component/auto_close';
 import { highligth } from '../component/highligth';
+import { projectsTitle } from '../component/projects';
 // import { handleCheck, checkboxes, checkos } from '../component/shit_checkbox';
 // import { initSelect2 } from '../components/init_select2';
 
@@ -39,6 +40,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   auto_close();
   highligth();
+  projectsTitle();
 
   flatpickr("[data-behavior='flatpickr']", {
     altInput: true,
