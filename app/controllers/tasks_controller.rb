@@ -41,7 +41,8 @@ class TasksController < ApplicationController
   def destroy
     authorize @task
     @task.destroy
-    redirect_to tasks_path
+    @project = Project.find(@task.project_id)
+    redirect_to project_path(@project)
   end
 
   private

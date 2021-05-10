@@ -14,13 +14,13 @@
       <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
         Modifier le projet
       </button>
-
+      <% if current_user.admin %>
         <%= link_to "Effacer",
         project_path(@project),
         method: :delete,
         data: { confirm: "Es-tu certain ?" },
         class: "mr-4 text-danger" %>
-
+      <% end %>
     </div>
 
 
@@ -295,13 +295,13 @@
       <div class="modal-body d-flex flex-column justify-content-between">
         <% @tasks.each do |task| %>
         <div class="">
-           <span><%= task.name.capitalize %></span>
-           <span> <%= link_to "Modifier", edit_project_task_path(@project, task) %></span>
-           <%= link_to "Effacer",
-           project_path(@project, task),
-           method: :delete,
-           data: { confirm: "Es-tu certain ?" },
-           class: "mr-4 text-danger" %>
+          <span><%= task.name.capitalize %></span>
+          <span> <%= link_to "Modifier", edit_project_task_path(@project, task) %></span>
+          <%= link_to "Effacer",
+          project_task_path(@project, task),
+          method: :delete,
+          data: { confirm: "Es-tu certain ?" },
+          class: "mr-4 text-danger"%>
           <% end %>
         </div>
       </div>
