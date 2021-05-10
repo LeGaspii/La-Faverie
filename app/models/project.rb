@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :house
+  belongs_to :user
   has_one_attached :photo, dependent: :destroy
   has_rich_text :rich_body
   has_many :tasks, dependent: :destroy

@@ -40,8 +40,8 @@ class TasksController < ApplicationController
 
   def destroy
     authorize @task
-    @project = Project.find(@task.project_id)
     @task.destroy
+    @project = Project.find(@task.project_id)
     redirect_to project_path(@project)
   end
 

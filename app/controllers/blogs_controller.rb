@@ -41,9 +41,9 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    authorize @blog
     @blog.destroy
     redirect_to blogs_path
-    authorize @blog
   end
 
   private

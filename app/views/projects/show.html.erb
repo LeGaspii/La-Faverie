@@ -14,13 +14,13 @@
       <button type="button" class="btn btn-gradient" data-toggle="modal" data-target="#editProject">
         Modifier le projet
       </button>
-
+      <% if policy(@project).destroy? %>
         <%= link_to "Effacer",
         project_path(@project),
         method: :delete,
         data: { confirm: "Es-tu certain ?" },
         class: "mr-4 text-danger" %>
-
+      <% end %>
     </div>
 
 
@@ -301,9 +301,10 @@
           project_task_path(@project, task),
           method: :delete,
           data: { confirm: "Es-tu certain ?" },
-          class: "mr-4 text-danger"%>
-          <%= icon('fas', 'trash') %>
+          class: "mr-4 text-danger" do%>
+            <%= icon('fas', 'trash')  %>
           <% end %>
+        <% end %>
         </div>
       </div>
       </div>
